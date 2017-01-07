@@ -1,0 +1,24 @@
+{
+  "name": "ivobos-gameplate",
+  "version": "0.0.1",
+  "description": "Gameplate for threejs based mobile games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivobos/ivobos-gameplate.git"
+  },
+  "keywords": [
+    "threejs",
+    "ivobos",
+    "gameplate"
+  ],
+  "author": "Ivo Bosticky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivobos/ivobos-gameplate/issues"
+  },
+  "homepage": "https://github.com/ivobos/ivobos-gameplate#readme"
+}
