@@ -24,6 +24,7 @@ cordova platform add android --save
 ```
 Build for Android
 ```
+npm run build
 cordova build
 ```
 Connect your android device using a USB cable and run
