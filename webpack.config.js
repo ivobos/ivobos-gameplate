@@ -1,8 +1,7 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
-        splash : './src/main/js/client/splash.jsx',
-        client : './src/main/js/client/clientMain.jsx'
+        splash : './src/main/js/client/splash.js'
     },
     output: {
         path: 'www',
@@ -10,13 +9,15 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: 'babel-loader', query: {presets: ['es2015']}, exclude: /(node_modules)/ },
-            { test: /\.jsx$/, loader: 'babel-loader', query: {presets: ['es2015', 'react']}, exclude: /(node_modules)/ },
+            { test: /\.js$/, loader: 'babel', query: {presets: ['es2015']}, exclude: /(node_modules)/ },
+            { test: /\.jsx$/, loader: 'babel', query: {presets: ['es2015', 'react']}, exclude: /(node_modules)/ },
             { test: /\.css$/, loader: "style!css" },
-            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=material-design-icons/iconfont/[name].[ext]' }
+            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=material-design-icons/iconfont/[name].[ext]' },
+            { test: /\.scss$/, loaders: ["style", "css", "sass"] }
         ]
     },
     plugins: [new HtmlWebpackPlugin({
-        title: 'Gameplate'
+        title: 'Gameplate',
+        chunks: ['splash']
     })]
 };

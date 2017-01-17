@@ -6,34 +6,36 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import "../../css/stylesheet.css";
+import "../../css/material-icons.css";
 
-injectTapEventPlugin();
+//injectTapEventPlugin();
+module.exports.run = function() {
+    var rootElem = document.createElement('div');
+    document.body.appendChild(rootElem);
 
-var rootElem = document.createElement('div');
-document.body.appendChild(rootElem);
-
-const App = () => (
-    <MuiThemeProvider>
-        <div>
-            <div ref={node => {
-                node.appendChild(sceneRenderer.getRendererElement());
-                }}>
-            </div>
-            <div style={{ position: 'absolute', top: 0}}>
-                <div>
-                    <FontIcon className="material-icons">home</FontIcon>
+    const App = () => (
+        <MuiThemeProvider>
+            <div>
+                <div ref={node => {
+                    node.appendChild(sceneRenderer.getRendererElement());
+                    }}>
+                </div>
+                <div style={{ position: 'absolute', top: 0}}>
+                    <div>
+                        <FontIcon className="material-icons">home</FontIcon>
+                    </div>
                 </div>
             </div>
-        </div>
-    </MuiThemeProvider>
-);
+        </MuiThemeProvider>
+    );
 
-sceneRenderer.createScene();
+    sceneRenderer.createScene();
 
-ReactDOM.render(<App />, rootElem);
+    ReactDOM.render(<App />, rootElem);
 
-var splash = document.getElementById('splash')
-document.body.removeChild(splash);
+    var splash = document.getElementById('splash')
+    document.body.removeChild(splash);
+};
+
 
 
