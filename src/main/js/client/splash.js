@@ -14,8 +14,8 @@ splash.appendChild(spinner);
 
 requestAnimationFrame(function() {
     require.ensure([], function() {
-        let client = require("./clientMain.jsx");
-        client.run();
+        let main = require("./main.jsx");
+        main.run();
     });
 });
 
