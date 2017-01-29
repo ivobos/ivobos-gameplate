@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 var scene = new THREE.Scene();
-var color = 0x888888;
+var color = 0xffffff;
 //scene.fog = new THREE.Fog( color, 60, 90); // this should match far in CameraInstance
 scene.background = new THREE.Color( color );
 

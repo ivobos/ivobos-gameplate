@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+//import * as container from '../scene/container';
+import * as sceneInstance from '../scene/sceneInstance';
 
 var debug = false;
 var camera = new THREE.PerspectiveCamera();
@@ -21,12 +23,19 @@ var tiltRange = 10;
 var newCenter = null;
 var maxSpeed = 2.6;
 var maxRotate = 1.0 * Math.PI / 180;
+//var flyControls;
 if (debugCamera) {
     debugCamera.far = 20000;
-    //var container = engine.engineInstance.container.getDomElement();
-    //this.flyControls = new THREE.FlyControls(this.debugCamera, container);
+//    var containerElem = container.getDomElement();
+//    flyControls = new THREE.FlyControls(debugCamera, containerElem);
 }
-updateCamera();
+
+camera.onBeforeRender = updateCamera;
+
+if (debug) {
+    sceneInstance.getScene().add(center);
+//    sceneInstance.getScene().add(new THREE.CameraHelper(camera));
+}
 
 export function getGameCamera() {
     return camera;
@@ -81,9 +90,9 @@ export function updateCamera() {
     camera.matrixWorldInverse.getInverse( camera.matrixWorld );
     // update the debug camera to trail the actual camera
     if (debugCamera) {
-        //debugCamera.copy(this.camera);
-        //debugCamera.position.add(this.debugCamera.getWorldDirection().multiplyScalar(-200));
-        flyControls.update(1);
+        debugCamera.copy(camera);
+        debugCamera.position.add(debugCamera.getWorldDirection().multiplyScalar(-200));
+//        flyControls.update(1);
     }
 }
 

@@ -30,6 +30,7 @@ function frame() {
     lastMsec = nowMsec;
     //this.callMethod("doAnimation");
     //this.callMethodsWithData("getCameraData", "doCameraUpdate");
+    //cameraInstance.doCameraUpdate();
     //stats.end();
     frameReq = requestAnimationFrame(frame);
 }
