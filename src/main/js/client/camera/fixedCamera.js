@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 
 var camera = new THREE.PerspectiveCamera();
-camera.position.z = 500;
 camera.onBeforeRender = updateCamera;
 
 function updateCamera() {

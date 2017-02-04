@@ -1,7 +1,7 @@
 import "../../css/client.css";
 import "../../css/splash.css";
-import "../../../../node_modules/material-design-lite/material.css";
-import "../../../../node_modules/material-design-lite/material.js";
+import 'material-design-lite/material.css';
+import 'material-design-lite/material.js';
 
 var splash = document.createElement('div');
 splash.id = "splash";

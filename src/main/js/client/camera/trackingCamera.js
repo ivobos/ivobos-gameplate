@@ -14,7 +14,7 @@ var highAngle = 12;
 // camera to look at this object, in the direction this object is facing
 var center = debug ? new THREE.AxisHelper(25) : new THREE.Object3D();
 // objects within this distance of center should be visible in camera view
-var centerRadius = 300;
+var centerRadius = 30;
 // camera tilt input, comes from mouse or dev orientation
 var tiltInput = new THREE.Vector2();
 // max tilt in degrees
