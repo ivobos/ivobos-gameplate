@@ -7,7 +7,7 @@ export function onTextFieldChange(event) {
     updatePackman(event.target.value);
 }
 
-var recipe = "gms5tc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
+var recipe = "gms5lc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
 var object3d = null;
 var center3d = null;
 

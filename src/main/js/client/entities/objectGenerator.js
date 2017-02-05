@@ -99,6 +99,8 @@ function createMeshMaterial(recipe) {
             return createMeshLambertMaterial(recipe);
         case 't':
             return createMeshToonMaterial(recipe);
+        case 's':
+            return createMeshStandardMaterial(recipe);
         default:
             if (item) recipe.unshift(item);
             return new THREE.MeshBasicMaterial({color:0x888888});
@@ -120,12 +122,17 @@ function createSphere(recipe) {
             recipe.unshift(item);
         }
     }
-    return new THREE.SphereBufferGeometry(radius);
+    return new THREE.SphereBufferGeometry(radius, 16, 12);
 }
 
 function createMeshLambertMaterial(recipe) {
     var parameters = getMeshMaterialProperties(recipe);
     return new THREE.MeshLambertMaterial(parameters);
+}
+
+function createMeshStandardMaterial(recipe) {
+    var parameters = getMeshMaterialProperties(recipe);
+    return new THREE.MeshStandardMaterial(parameters);
 }
 
 function getMeshMaterialProperties(recipe) {

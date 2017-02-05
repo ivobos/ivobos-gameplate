@@ -7,6 +7,9 @@ module.exports = {
         path: 'www',
         filename: '[name].bundle.js'
     },
+    node: {
+        fs: "empty" // needed because antlr4 was trying to require fs
+    },
     devtool: 'source-map',
     module: {
         loaders: [

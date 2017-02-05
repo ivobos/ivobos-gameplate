@@ -11,6 +11,7 @@ import * as cameraManager from "./camera/cameraManager";
 import * as fixedCamera from "./camera/fixedCamera";
 import * as trackingCamera from "./camera/trackingCamera";
 import * as pacman from "./entities/pacman";
+import * as threedsl from "./dsl/threedsl";
 
 //injectTapEventPlugin();
 module.exports.run = function() {
@@ -79,7 +80,8 @@ module.exports.run = function() {
     const normal = new THREE.Vector3(0, 1, 0);
     for (var x = 0; x < blocksPerFacet ; x++) {
         for (var z = 0; z < blocksPerFacet; z++) {
-            var color = new THREE.Color(x / blocksPerFacet, 0.5, z / blocksPerFacet);
+            var c = 0.5 + (x+z) / blocksPerFacet / 4;
+            var color = new THREE.Color(c,c,c);
             var center = new THREE.Vector3(
                 (x - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet,
                 0,
