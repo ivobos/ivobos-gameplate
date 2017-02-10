@@ -1,18 +1,26 @@
-import * as THREE from 'three'
+import * as THREE from 'three';
 import * as sceneInstance from "../scene/sceneInstance";
-import * as objectGenerator from "./objectGenerator";
+import * as threeDsl from "../dsl/threedsl";
 
 export function onTextFieldChange(event) {
     //console.log(event.target.value);
     updatePackman(event.target.value);
 }
 
-var recipe = "gms5lc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
+//var recipe = "gms5lc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
 var object3d = null;
 var center3d = null;
 
+var recipe = `
+ default Color#304
+ default Lambert Color#663
+ Group Mesh Sphere radius=5
+      Mesh Box Toon translate -1,0,0
+`;
+
 function updatePackman(newRecipe) {
-    var newobject3d = objectGenerator.create(newRecipe);
+    var newobject3d = threeDsl.parseAndExecute(newRecipe);
+    //var newobject3d = objectGenerator.create(newRecipe);
     if (newobject3d) {
         if (object3d) sceneInstance.getScene().remove(object3d);
         object3d = newobject3d;
