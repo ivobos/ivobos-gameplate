@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import * as sceneInstance from "../scene/sceneInstance";
 import * as threeDsl from "../dsl/threedsl";
+import * as sceneRenderer from "../scene/sceneRenderer";
+import * as object3dEdges from "./object3dEdges";
 
 export function onTextFieldChange(event) {
     //console.log(event.target.value);
@@ -12,21 +14,27 @@ var object3d = null;
 var center3d = null;
 
 var recipe = `
- default Color#304
- default Lambert Color#663
- Group Mesh Sphere radius=5
-      Mesh Box Toon translate -1,0,0
+ default Color#fff
+ default Lambert Color#fff
+ Group Mesh Sphere radius=5 Lambert Color#800
+    Mesh Sphere radius=5 Lambert Color#000 translate 0,5,0
 `;
 
 function updatePackman(newRecipe) {
     var newobject3d = threeDsl.parseAndExecute(newRecipe);
     //var newobject3d = objectGenerator.create(newRecipe);
     if (newobject3d) {
-        if (object3d) sceneInstance.getScene().remove(object3d);
+        if (object3d) {
+            sceneInstance.getScene().remove(object3d);
+            newobject3d.position.copy(object3d.position);
+        } else {
+            if (center3d) newobject3d.position.copy(center3d);
+        }
         object3d = newobject3d;
         recipe = newRecipe;
-        if (center3d) newobject3d.position.copy(center3d);
+        object3dEdges.addEdges(newobject3d);
         sceneInstance.getScene().add(newobject3d);
+        sceneRenderer.setRenderRequired();
     }
 }
 

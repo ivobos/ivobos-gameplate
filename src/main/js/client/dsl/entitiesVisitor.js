@@ -126,8 +126,8 @@ entitiesVisitor.prototype.visitRgb = function(ctx) {
 };
 
 
-// Visit a parse tree produced by entitiesParser#vector3d.
-entitiesVisitor.prototype.visitVector3d = function(ctx) {
+// Visit a parse tree produced by entitiesParser#vector3.
+entitiesVisitor.prototype.visitVector3 = function(ctx) {
   return this.visitChildren(ctx);
 };
 

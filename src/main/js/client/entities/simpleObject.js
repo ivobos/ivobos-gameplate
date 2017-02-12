@@ -49,3 +49,13 @@ export function addSphere(center, radius, color) {
 export function addOrigin() {
     sceneInstance.getScene().add(new THREE.AxisHelper(10));
 }
+
+export function addGridHelper() {
+    var size = 20;
+    var divisions = 10;
+
+    var gridHelper = new THREE.GridHelper( size, divisions, 0x88000000, 0x00880000 );
+    gridHelper.material.opacity = 0.2;
+    gridHelper.material.transparent = true;
+    sceneInstance.getScene().add( gridHelper );
+}

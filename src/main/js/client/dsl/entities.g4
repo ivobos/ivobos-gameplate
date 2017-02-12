@@ -10,7 +10,7 @@ statement :
 object3d :
     'Group' object3d+                  # group
     | 'Mesh' geometry material?        # mesh
-    | object3d 'translate' vector3d    # translate
+    | object3d 'translate' vector3     # translate
     ;
 geometry :
     'Box'               # box
@@ -29,7 +29,7 @@ colorValue: HEX                     # hexColor
             | LONG_HEX_TRIPLET      # hexTripletColor
             ;
 rgb: INT ',' INT ',' INT ;
-vector3d : SIGNED_INT ','  SIGNED_INT ','  SIGNED_INT;
+vector3 : SIGNED_INT ','  SIGNED_INT ','  SIGNED_INT;
 SHORT_HEX_TRIPLET: '#'[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] ;
 LONG_HEX_TRIPLET: '#'[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] ;
 HEX : '0x'[0-9a-fA-F]+;

@@ -74,26 +74,27 @@ module.exports.run = function() {
 
     cameraManager.addCamera(trackingCamera.getCamera());
 
-    const facetSize = 20;
-    const blocksPerFacet = 5;
-    const blockSize = facetSize / blocksPerFacet;
-    const normal = new THREE.Vector3(0, 1, 0);
-    for (var x = 0; x < blocksPerFacet ; x++) {
-        for (var z = 0; z < blocksPerFacet; z++) {
-            var c = 0.5 + (x+z) / blocksPerFacet / 4;
-            var color = new THREE.Color(c,c,c);
-            var center = new THREE.Vector3(
-                (x - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet,
-                0,
-                (z - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet
-            );
-            simpleObject.addSquare(center, blockSize, normal, color);
-        }
-    }
+    //const facetSize = 20;
+    //const blocksPerFacet = 5;
+    //const blockSize = facetSize / blocksPerFacet;
+    //const normal = new THREE.Vector3(0, 1, 0);
+    //for (var x = 0; x < blocksPerFacet ; x++) {
+    //    for (var z = 0; z < blocksPerFacet; z++) {
+    //        var c = 0.5 + (x+z) / blocksPerFacet / 4;
+    //        var color = new THREE.Color(c,c,c);
+    //        var center = new THREE.Vector3(
+    //            (x - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet,
+    //            0,
+    //            (z - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet
+    //        );
+    //        simpleObject.addSquare(center, blockSize, normal, color);
+    //    }
+    //}
     //simpleObject.addSphere(new THREE.Vector3(-2, 1, 2), 1, 0xffff00);
-    //simpleObject.addOrigin();
+    simpleObject.addOrigin();
     simpleObject.addDirectionalLight();
     simpleObject.addAmbientLight();
+    simpleObject.addGridHelper();
     pacman.addPacman(new THREE.Vector3(0, 8, 0), document.getElementById('pacman_recipe'));
     gameLoop.start();
 

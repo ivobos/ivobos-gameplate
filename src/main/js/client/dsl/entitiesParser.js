@@ -1,7 +1,6 @@
 // Generated from /Users/ibosticky/src/ivobos-gameplate/src/main/js/client/dsl/entities.g4 by ANTLR 4.6
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
-var entitiesListener = require('./entitiesListener').entitiesListener;
 var entitiesVisitor = require('./entitiesVisitor').entitiesVisitor;
 
 var grammarFileName = "entities.g4";
@@ -86,7 +85,7 @@ var symbolicNames = [ null, null, null, null, null, null, null, null, null,
                       "HEX", "SIGNED_INT", "INT", "WS" ];
 
 var ruleNames =  [ "program", "statement", "object3d", "geometry", "radius", 
-                   "material", "color", "colorValue", "rgb", "vector3d" ];
+                   "material", "color", "colorValue", "rgb", "vector3" ];
 
 function entitiesParser (input) {
 	antlr4.Parser.call(this, input);
@@ -135,7 +134,7 @@ entitiesParser.RULE_material = 5;
 entitiesParser.RULE_color = 6;
 entitiesParser.RULE_colorValue = 7;
 entitiesParser.RULE_rgb = 8;
-entitiesParser.RULE_vector3d = 9;
+entitiesParser.RULE_vector3 = 9;
 
 function ProgramContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -162,18 +161,6 @@ ProgramContext.prototype.statement = function(i) {
     } else {
         return this.getTypedRuleContext(StatementContext,i);
     }
-};
-
-ProgramContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterProgram(this);
-	}
-};
-
-ProgramContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitProgram(this);
-	}
 };
 
 ProgramContext.prototype.accept = function(visitor) {
@@ -257,18 +244,6 @@ entitiesParser.DefaultGeometryContext = DefaultGeometryContext;
 DefaultGeometryContext.prototype.geometry = function() {
     return this.getTypedRuleContext(GeometryContext,0);
 };
-DefaultGeometryContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterDefaultGeometry(this);
-	}
-};
-
-DefaultGeometryContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitDefaultGeometry(this);
-	}
-};
-
 DefaultGeometryContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitDefaultGeometry(this);
@@ -292,18 +267,6 @@ entitiesParser.DefaultMaterialContext = DefaultMaterialContext;
 DefaultMaterialContext.prototype.material = function() {
     return this.getTypedRuleContext(MaterialContext,0);
 };
-DefaultMaterialContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterDefaultMaterial(this);
-	}
-};
-
-DefaultMaterialContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitDefaultMaterial(this);
-	}
-};
-
 DefaultMaterialContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitDefaultMaterial(this);
@@ -327,18 +290,6 @@ entitiesParser.DefaultColorContext = DefaultColorContext;
 DefaultColorContext.prototype.color = function() {
     return this.getTypedRuleContext(ColorContext,0);
 };
-DefaultColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterDefaultColor(this);
-	}
-};
-
-DefaultColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitDefaultColor(this);
-	}
-};
-
 DefaultColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitDefaultColor(this);
@@ -362,18 +313,6 @@ entitiesParser.AddObject3dContext = AddObject3dContext;
 AddObject3dContext.prototype.object3d = function() {
     return this.getTypedRuleContext(Object3dContext,0);
 };
-AddObject3dContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterAddObject3d(this);
-	}
-};
-
-AddObject3dContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitAddObject3d(this);
-	}
-};
-
 AddObject3dContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitAddObject3d(this);
@@ -484,18 +423,6 @@ MeshContext.prototype.geometry = function() {
 MeshContext.prototype.material = function() {
     return this.getTypedRuleContext(MaterialContext,0);
 };
-MeshContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterMesh(this);
-	}
-};
-
-MeshContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitMesh(this);
-	}
-};
-
 MeshContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitMesh(this);
@@ -520,21 +447,9 @@ TranslateContext.prototype.object3d = function() {
     return this.getTypedRuleContext(Object3dContext,0);
 };
 
-TranslateContext.prototype.vector3d = function() {
-    return this.getTypedRuleContext(Vector3dContext,0);
+TranslateContext.prototype.vector3 = function() {
+    return this.getTypedRuleContext(Vector3Context,0);
 };
-TranslateContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterTranslate(this);
-	}
-};
-
-TranslateContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitTranslate(this);
-	}
-};
-
 TranslateContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitTranslate(this);
@@ -565,18 +480,6 @@ GroupContext.prototype.object3d = function(i) {
         return this.getTypedRuleContext(Object3dContext,i);
     }
 };
-GroupContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterGroup(this);
-	}
-};
-
-GroupContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitGroup(this);
-	}
-};
-
 GroupContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitGroup(this);
@@ -665,7 +568,7 @@ entitiesParser.prototype.object3d = function(_p) {
                 this.state = 50;
                 this.match(entitiesParser.T__3);
                 this.state = 51;
-                this.vector3d(); 
+                this.vector3(); 
             }
             this.state = 56;
             this._errHandler.sync(this);
@@ -723,18 +626,6 @@ entitiesParser.SphereContext = SphereContext;
 SphereContext.prototype.radius = function() {
     return this.getTypedRuleContext(RadiusContext,0);
 };
-SphereContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterSphere(this);
-	}
-};
-
-SphereContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitSphere(this);
-	}
-};
-
 SphereContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitSphere(this);
@@ -754,18 +645,6 @@ BoxContext.prototype = Object.create(GeometryContext.prototype);
 BoxContext.prototype.constructor = BoxContext;
 
 entitiesParser.BoxContext = BoxContext;
-
-BoxContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterBox(this);
-	}
-};
-
-BoxContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitBox(this);
-	}
-};
 
 BoxContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
@@ -842,18 +721,6 @@ RadiusContext.prototype.constructor = RadiusContext;
 
 RadiusContext.prototype.SIGNED_INT = function() {
     return this.getToken(entitiesParser.SIGNED_INT, 0);
-};
-
-RadiusContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterRadius(this);
-	}
-};
-
-RadiusContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitRadius(this);
-	}
 };
 
 RadiusContext.prototype.accept = function(visitor) {
@@ -939,18 +806,6 @@ entitiesParser.LambertContext = LambertContext;
 LambertContext.prototype.color = function() {
     return this.getTypedRuleContext(ColorContext,0);
 };
-LambertContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterLambert(this);
-	}
-};
-
-LambertContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitLambert(this);
-	}
-};
-
 LambertContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitLambert(this);
@@ -974,18 +829,6 @@ entitiesParser.ToonContext = ToonContext;
 ToonContext.prototype.color = function() {
     return this.getTypedRuleContext(ColorContext,0);
 };
-ToonContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterToon(this);
-	}
-};
-
-ToonContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitToon(this);
-	}
-};
-
 ToonContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitToon(this);
@@ -1071,18 +914,6 @@ ColorContext.prototype.colorValue = function() {
     return this.getTypedRuleContext(ColorValueContext,0);
 };
 
-ColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterColor(this);
-	}
-};
-
-ColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitColor(this);
-	}
-};
-
 ColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitColor(this);
@@ -1166,18 +997,6 @@ entitiesParser.RgbColorContext = RgbColorContext;
 RgbColorContext.prototype.rgb = function() {
     return this.getTypedRuleContext(RgbContext,0);
 };
-RgbColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterRgbColor(this);
-	}
-};
-
-RgbColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitRgbColor(this);
-	}
-};
-
 RgbColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitRgbColor(this);
@@ -1201,18 +1020,6 @@ entitiesParser.HexColorContext = HexColorContext;
 HexColorContext.prototype.HEX = function() {
     return this.getToken(entitiesParser.HEX, 0);
 };
-HexColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterHexColor(this);
-	}
-};
-
-HexColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitHexColor(this);
-	}
-};
-
 HexColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitHexColor(this);
@@ -1240,18 +1047,6 @@ HexTripletColorContext.prototype.SHORT_HEX_TRIPLET = function() {
 HexTripletColorContext.prototype.LONG_HEX_TRIPLET = function() {
     return this.getToken(entitiesParser.LONG_HEX_TRIPLET, 0);
 };
-HexTripletColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterHexTripletColor(this);
-	}
-};
-
-HexTripletColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitHexTripletColor(this);
-	}
-};
-
 HexTripletColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitHexTripletColor(this);
@@ -1275,18 +1070,6 @@ entitiesParser.IntColorContext = IntColorContext;
 IntColorContext.prototype.INT = function() {
     return this.getToken(entitiesParser.INT, 0);
 };
-IntColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterIntColor(this);
-	}
-};
-
-IntColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitIntColor(this);
-	}
-};
-
 IntColorContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitIntColor(this);
@@ -1386,18 +1169,6 @@ RgbContext.prototype.INT = function(i) {
 };
 
 
-RgbContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterRgb(this);
-	}
-};
-
-RgbContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitRgb(this);
-	}
-};
-
 RgbContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitRgb(this);
@@ -1441,7 +1212,7 @@ entitiesParser.prototype.rgb = function() {
     return localctx;
 };
 
-function Vector3dContext(parser, parent, invokingState) {
+function Vector3Context(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
 	}
@@ -1450,14 +1221,14 @@ function Vector3dContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = entitiesParser.RULE_vector3d;
+    this.ruleIndex = entitiesParser.RULE_vector3;
     return this;
 }
 
-Vector3dContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
-Vector3dContext.prototype.constructor = Vector3dContext;
+Vector3Context.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+Vector3Context.prototype.constructor = Vector3Context;
 
-Vector3dContext.prototype.SIGNED_INT = function(i) {
+Vector3Context.prototype.SIGNED_INT = function(i) {
 	if(i===undefined) {
 		i = null;
 	}
@@ -1469,21 +1240,9 @@ Vector3dContext.prototype.SIGNED_INT = function(i) {
 };
 
 
-Vector3dContext.prototype.enterRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.enterVector3d(this);
-	}
-};
-
-Vector3dContext.prototype.exitRule = function(listener) {
-    if(listener instanceof entitiesListener ) {
-        listener.exitVector3d(this);
-	}
-};
-
-Vector3dContext.prototype.accept = function(visitor) {
+Vector3Context.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
-        return visitor.visitVector3d(this);
+        return visitor.visitVector3(this);
     } else {
         return visitor.visitChildren(this);
     }
@@ -1492,12 +1251,12 @@ Vector3dContext.prototype.accept = function(visitor) {
 
 
 
-entitiesParser.Vector3dContext = Vector3dContext;
+entitiesParser.Vector3Context = Vector3Context;
 
-entitiesParser.prototype.vector3d = function() {
+entitiesParser.prototype.vector3 = function() {
 
-    var localctx = new Vector3dContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 18, entitiesParser.RULE_vector3d);
+    var localctx = new Vector3Context(this, this._ctx, this.state);
+    this.enterRule(localctx, 18, entitiesParser.RULE_vector3);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 99;

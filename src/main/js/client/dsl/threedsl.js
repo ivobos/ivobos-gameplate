@@ -67,8 +67,8 @@ ProgramVisitor.prototype.visitMesh = function(ctx) {
 
 ProgramVisitor.prototype.visitTranslate = function(ctx) {
     var object3d = this.visit(ctx.object3d());
-    var vector3d = this.visit(ctx.vector3d());
-    object3d.position.add(vector3d);
+    var vector3 = this.visit(ctx.vector3());
+    object3d.position.add(vector3);
     return object3d;
 };
 
@@ -106,6 +106,13 @@ ProgramVisitor.prototype.visitHexTripletColor = function(ctx) {
     var c = undefined;
     if (ctx.SHORT_HEX_TRIPLET()) c = ctx.SHORT_HEX_TRIPLET().getText();
     return new THREE.Color(c);
+};
+
+ProgramVisitor.prototype.visitVector3 = function(ctx) {
+    var x = parseInt(ctx.SIGNED_INT(0).getText());
+    var y = parseInt(ctx.SIGNED_INT(1).getText());
+    var z = parseInt(ctx.SIGNED_INT(2).getText());
+    return new THREE.Vector3(x,y,z);
 };
 
 export function parseAndExecute(script) {

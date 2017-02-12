@@ -1,4 +1,8 @@
 import * as sceneRenderer from "./scene/sceneRenderer";
+import * as infiniteFloor from "./physics/infiniteFloor";
+import * as momentum from "./physics/momentum";
+import * as uniformGravity from "./physics/uniformGravity";
+import * as simpleDrag from "./physics/simpleDrag";
 
 const updatesPerSec = 60;
 const stepSec = 1 / updatesPerSec;
@@ -26,6 +30,11 @@ function frame() {
     while(dtSec > stepSec) {
         dtSec = dtSec - stepSec;
         //this.callMethodsWithData("getPhysicsData", "doPhysics");
+        uniformGravity.process();
+        simpleDrag.process();
+        momentum.process();
+        infiniteFloor.process();
+        sceneRenderer.setRenderRequired();
     }
     lastMsec = nowMsec;
     //this.callMethod("doAnimation");
