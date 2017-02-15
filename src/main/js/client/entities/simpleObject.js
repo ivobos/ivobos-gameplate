@@ -66,3 +66,7 @@ export function addRecipe(recipe, position) {
     sceneInstance.getScene().add(object3d);
     if (position) object3d.position.add(position);
 }
+
+export function addSkeleton() {
+    var skeleton = new THREE.Skeleton();
+}

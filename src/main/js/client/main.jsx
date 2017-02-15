@@ -11,7 +11,7 @@ import * as cameraManager from "./camera/cameraManager";
 import * as fixedCamera from "./camera/fixedCamera";
 import * as trackingCamera from "./camera/trackingCamera";
 import * as pacman from "./entities/pacman";
-import * as threedsl from "./dsl/threedsl";
+import * as object3dEdges from "./entities/object3dEdges";
 
 //injectTapEventPlugin();
 module.exports.run = function() {
@@ -35,9 +35,10 @@ module.exports.run = function() {
                     <div className="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
                     </div>
                     <div className="mdl-cell mdl-cell--1-col" style={{ textAlign: "center"}}>
-                        <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                            <i className="material-icons">settings</i>
-                        </button>
+                        <label className="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" htmlFor="highlightToggle">
+                            <input type="checkbox" id="highlightToggle" className="mdl-icon-toggle__input" onChange={object3dEdges.toggleEnabled}/>
+                                <i className="mdl-icon-toggle__label material-icons">highlight</i>
+                        </label>
                     </div>
                 </div>
             </div>

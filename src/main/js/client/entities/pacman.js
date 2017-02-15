@@ -30,7 +30,7 @@ function updatePackman(newRecipe) {
         if (center3d) newobject3d.position.copy(center3d);
         rememberComponents(newobject3d);
         recipe = newRecipe;
-        object3dEdges.highlightObject(newobject3d);
+        object3dEdges.selectComponents(components);
         sceneInstance.getScene().add(newobject3d);
         sceneRenderer.setRenderRequired();
     }
