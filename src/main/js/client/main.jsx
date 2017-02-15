@@ -95,7 +95,8 @@ module.exports.run = function() {
     simpleObject.addDirectionalLight();
     simpleObject.addAmbientLight();
     simpleObject.addGridHelper();
-    pacman.addPacman(new THREE.Vector3(0, 8, 0), document.getElementById('pacman_recipe'));
+    simpleObject.addRecipe(`Mesh Sphere radius=5 Lambert Color#888 translate -15,5,0`);
+    pacman.addPacman(new THREE.Vector3(0, 10, 0), document.getElementById('pacman_recipe'));
     gameLoop.start();
 
 };

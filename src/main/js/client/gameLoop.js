@@ -3,6 +3,7 @@ import * as infiniteFloor from "./physics/infiniteFloor";
 import * as momentum from "./physics/momentum";
 import * as uniformGravity from "./physics/uniformGravity";
 import * as simpleDrag from "./physics/simpleDrag";
+import * as cohesion from "./physics/cohesion";
 
 const updatesPerSec = 60;
 const stepSec = 1 / updatesPerSec;
@@ -30,6 +31,7 @@ function frame() {
     while(dtSec > stepSec) {
         dtSec = dtSec - stepSec;
         //this.callMethodsWithData("getPhysicsData", "doPhysics");
+        cohesion.process();
         uniformGravity.process();
         simpleDrag.process();
         momentum.process();

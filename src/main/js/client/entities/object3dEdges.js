@@ -1,6 +1,17 @@
 import * as THREE from 'three';
 
-export function addEdges(object3d) {
+var highlights = [];
+
+export function highlightObject(object3d) {
+    // remove previous highlight
+    for (var highlight of highlights) {
+        highlight.parent.remove(highlight);
+    }
+    addEdges(object3d);
+}
+
+function addEdges(object3d) {
+    highlights = [];
     if (object3d.isMesh) {
         var geometry = object3d.geometry;
         var edges = new THREE.EdgesGeometry( geometry );
@@ -15,11 +26,13 @@ export function addEdges(object3d) {
             blendDst: THREE.OneMinusDstAlphaFactor
         } );
         var line = new THREE.LineSegments( edges, material );
-        object3d.add( line );
+        object3d.add(line);
+        highlights.push(line);
     } else {
         for (var i = 0; i < object3d.children.length; i++) {
             addEdges(object3d.children[i]);
         }
     }
 }
+
 

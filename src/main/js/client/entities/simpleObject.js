@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import * as sceneInstance from "../scene/sceneInstance";
 import image1 from "./ground_sandy_564x564.png";
+import * as threeDsl from "../dsl/threedsl";
 
 var texture = new THREE.TextureLoader().load(image1);
 
@@ -58,4 +59,10 @@ export function addGridHelper() {
     gridHelper.material.opacity = 0.2;
     gridHelper.material.transparent = true;
     sceneInstance.getScene().add( gridHelper );
+}
+
+export function addRecipe(recipe, position) {
+    var object3d = threeDsl.parseAndExecute(recipe);
+    sceneInstance.getScene().add(object3d);
+    if (position) object3d.position.add(position);
 }

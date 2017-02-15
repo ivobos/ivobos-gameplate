@@ -11,7 +11,7 @@ export function process() {
     var scene = sceneInstance.getScene();
     for (var i = 0; i < scene.children.length; i++) {
         var child = scene.children[i];
-        if (child.type == "Group") {
+        if (child.type == "Group" || child.isMesh) {
             processObject3d(child);
         }
     }

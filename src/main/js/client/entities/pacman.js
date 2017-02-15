@@ -10,31 +10,47 @@ export function onTextFieldChange(event) {
 }
 
 //var recipe = "gms5lc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
-var object3d = null;
+var components = [];
 var center3d = null;
 
 var recipe = `
  default Color#fff
  default Lambert Color#fff
- Group Mesh Sphere radius=5 Lambert Color#800
-    Mesh Sphere radius=5 Lambert Color#000 translate 0,5,0
+ Group 
+    Mesh Sphere radius=5 Lambert Color#800
+    Mesh Sphere radius=3 Toon Color#280 translate -3,3,3
+    Mesh Sphere radius=2 Lambert Color#008 translate 8,0,0
 `;
 
 function updatePackman(newRecipe) {
     var newobject3d = threeDsl.parseAndExecute(newRecipe);
     //var newobject3d = objectGenerator.create(newRecipe);
     if (newobject3d) {
-        if (object3d) {
-            sceneInstance.getScene().remove(object3d);
-            newobject3d.position.copy(object3d.position);
-        } else {
-            if (center3d) newobject3d.position.copy(center3d);
-        }
-        object3d = newobject3d;
+        removeComponentsFromScene();
+        if (center3d) newobject3d.position.copy(center3d);
+        rememberComponents(newobject3d);
         recipe = newRecipe;
-        object3dEdges.addEdges(newobject3d);
+        object3dEdges.highlightObject(newobject3d);
         sceneInstance.getScene().add(newobject3d);
         sceneRenderer.setRenderRequired();
+    }
+}
+
+function removeComponentsFromScene() {
+    // remove all parts of old object
+    for (var object3d of components) {
+        if (object3d.parent == null) {
+            sceneInstance.getScene().remove(object3d);
+        } else {
+            sceneInstance.getScene().remove(object3d.parent);
+        }
+    }
+    components = [];
+}
+function rememberComponents(object3d) {
+    components.push(object3d);
+    for (var i = 0; i < object3d.children.length; i++) {
+        rememberComponents(object3d.children[i]);
     }
 }
 
