@@ -13,6 +13,14 @@ import * as trackingCamera from "./camera/trackingCamera";
 import * as pacman from "./entities/pacman";
 import * as object3dEdges from "./entities/object3dEdges";
 
+function createClicked() {
+    var createButtonDiv = document.getElementById('createButtonDiv');
+    createButtonDiv.style.display = 'none';
+    var createDialogDiv = document.getElementById('createDialogDiv');
+    createDialogDiv.style.display = 'block';
+
+}
+
 //injectTapEventPlugin();
 module.exports.run = function() {
     var reactContainer = document.createElement('div');
@@ -25,16 +33,16 @@ module.exports.run = function() {
                 node.appendChild(sceneRenderer.getRendererElement());
                 }}>
             </div>
-            <div id="hudOverlayTop">
+            <div className="hudOverlayTop">
                 <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--1-col" style={{ textAlign: "center"}}>
-                        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={cameraManager.selectNextCamera}>
+                    <div className="mdl-cell mdl-cell--1-col">
+                        <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" onClick={cameraManager.selectNextCamera}>
                             <i className="material-icons">visibility</i>
                         </button>
                     </div>
                     <div className="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
                     </div>
-                    <div className="mdl-cell mdl-cell--1-col" style={{ textAlign: "center"}}>
+                    <div className="mdl-cell mdl-cell--1-col textalignRight">
                         <label className="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" htmlFor="highlightToggle">
                             <input type="checkbox" id="highlightToggle" className="mdl-icon-toggle__input" onChange={object3dEdges.toggleEnabled}/>
                                 <i className="mdl-icon-toggle__label material-icons">highlight</i>
@@ -42,25 +50,75 @@ module.exports.run = function() {
                     </div>
                 </div>
             </div>
-            <div id="hudOverlayBottom">
+            <div className="hudOverlayBottom" style={{display: 'none'}}>
                 <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone"
-                         style={{ textAlign: "center"}}>
-                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style={{ width:'100%'}}>
-                            <label className="mdl-button mdl-js-button mdl-button--icon" htmlFor="pacman_recipe">
-                                <i className="material-icons">code</i>
-                            </label>
-                            <div className="mdl-textfield__expandable-holder" style={{ width:'100%'}}>
-                                <input className="mdl-textfield__input" type="text" id="pacman_recipe"
-                                    onChange={pacman.onTextFieldChange}/>
-                                <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
+                    <div className="mdl-cell mdl-cell--1-offset mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+                        <div className="recipe mdl-card mdl-shadow--4dp" style={{width: '100%'}}>
+                            <div className="mdl-card__title">
+                                <h2 className="mdl-card__title-text">Object 1234</h2>
+                            </div>
+                            <div className="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label"
+                                 style={{width: '100%', padding: '16px'}}>
+                                <textarea className="mdl-textfield__input" type="text" rows= "6" id="pacman_recipe" ></textarea>
+                                <label className="mdl-textfield__label" htmlFor="pacman_recipe">Text lines...</label>
+                            </div>
+                            <div className="mdl-card__actions">
+                                <a href="(URL or function)">Create</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="createDialogDiv" className="hudOverlayBottom" style={{display: 'none'}}>
+                <div className="mdl-grid">
+                    <div className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <div className="recipe mdl-card mdl-shadow--4dp" style={{width: '100%'}}>
+                            <div className="mdl-card__title">
+                                <h2 className="mdl-card__title-text">Create</h2>
+                            </div>
+                            <div style={{paddingLeft: '16px',paddingRight: '16px'}}>
+                                <div className="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label"
+                                     style={{width: '100%'}}>
+                                    <textarea className="mdl-textfield__input" type="text" rows= "7" id="pacman_recipe"></textarea>
+                                    <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
+                                </div>
+                            </div>
+                            <div className="mdl-card__actions mdl-card--border">
+                                <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    Create
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="createButtonDiv" className="hudOverlayBottom">
+                <div className="mdl-grid">
+                    <div className="mdl-cell mdl-cell--1-col">
+                    </div>
+                    <div className="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+                    </div>
+                    <div className="mdl-cell mdl-cell--1-col textalignRight">
+                        <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onClick={createClicked}>
+                            <i className="material-icons">add</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
+
+    // <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style={{ width:'100%'}}>
+    //     {/*<label className="mdl-button mdl-js-button mdl-button--icon" htmlFor="pacman_recipe">*/}
+    //         <i className="material-icons">code</i>
+    //     </label>
+    //     <div className="mdl-textfield__expandable-holder" style={{ width:'100%'}}>
+    //         <input className="mdl-textfield__input" type="text" id="pacman_recipe"
+    //                onChange={pacman.onTextFieldChange}/>
+    //         <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
+    //     </div>
+    // </div>
+
 
     ReactDOM.render(<App />, reactContainer);
 

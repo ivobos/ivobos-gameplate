@@ -13,14 +13,13 @@ export function onTextFieldChange(event) {
 var components = [];
 var center3d = null;
 
-var recipe = `
- default Color#fff
- default Lambert Color#fff
- Group 
-    Mesh Sphere radius=5 Lambert Color#800
+var recipe =
+`default Color#fff
+default Lambert Color#fff
+Group 
+    Mesh Sphere radius=5 Lambert Color#080
     Mesh Sphere radius=3 Toon Color#280 translate -3,3,3
-    Mesh Sphere radius=2 Lambert Color#008 translate 8,0,0
-`;
+    Mesh Sphere radius=2 Lambert Color#008 translate 8,0,0`;
 
 function updatePackman(newRecipe) {
     var newobject3d = threeDsl.parseAndExecute(newRecipe);

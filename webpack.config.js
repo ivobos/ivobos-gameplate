@@ -23,6 +23,7 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
         title: 'Gameplate',
-        chunks: ['splash']
+        chunks: ['splash'],
+        template: './src/main/index.ejs'
     })]
 };

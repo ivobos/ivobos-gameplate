@@ -1,12 +1,20 @@
-#hudOverlayTop {
+.hudOverlayTop {
     position: absolute;
     top: 0;
     width: 100%;
     /*background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.2) 30%, rgba(0,0,0,0));*/
 }
 
-#hudOverlayBottom {
+.hudOverlayBottom {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+.textalignRight {
+    text-align: right;
+}
+
+.textalignCenter {
+    text-align: center;
 }
