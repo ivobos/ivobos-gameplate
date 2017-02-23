@@ -14,10 +14,8 @@ export function process() {
 }
 
 function processObject3d(object3d) {
-    var velocity = object3d.userData.velocity;
-    if (!velocity) {
-        object3d.userData.velocity = velocity = new THREE.Vector3();
+    if (object3d.userData.velocity) {
+        var force = object3d.userData.velocity.clone().multiplyScalar(-mediumDensity);
+        object3d.userData.velocity.add(force);
     }
-    var force = velocity.clone().multiplyScalar(-mediumDensity);
-    velocity.add(force);
 }

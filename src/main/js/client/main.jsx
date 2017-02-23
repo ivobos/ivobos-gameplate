@@ -6,123 +6,32 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as gameLoop from "./gameLoop";
 import * as simpleObject from "./entities/simpleObject";
-import * as sceneRenderer from "./scene/sceneRenderer";
 import * as cameraManager from "./camera/cameraManager";
 import * as fixedCamera from "./camera/fixedCamera";
 import * as trackingCamera from "./camera/trackingCamera";
 import * as pacman from "./entities/pacman";
-import * as object3dEdges from "./entities/object3dEdges";
 
-function createClicked() {
-    var createButtonDiv = document.getElementById('createButtonDiv');
-    createButtonDiv.style.display = 'none';
-    var createDialogDiv = document.getElementById('createDialogDiv');
-    createDialogDiv.style.display = 'block';
-
-}
+import RenderContainer from './hud/RenderContainer.jsx'
+import ToolBar from './hud/ToolBar.jsx';
+import ActionBar from './hud/ActionBar.jsx';
 
 //injectTapEventPlugin();
 module.exports.run = function() {
-    var reactContainer = document.createElement('div');
+    let reactContainer = document.createElement('div');
     reactContainer.id = "appContainer";
     document.body.appendChild(reactContainer);
 
     const App = () => (
         <div id="app">
-            <div id="rendererContainer" ref={node => {
-                node.appendChild(sceneRenderer.getRendererElement());
-                }}>
-            </div>
-            <div className="hudOverlayTop">
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--1-col">
-                        <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" onClick={cameraManager.selectNextCamera}>
-                            <i className="material-icons">visibility</i>
-                        </button>
-                    </div>
-                    <div className="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                    </div>
-                    <div className="mdl-cell mdl-cell--1-col textalignRight">
-                        <label className="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" htmlFor="highlightToggle">
-                            <input type="checkbox" id="highlightToggle" className="mdl-icon-toggle__input" onChange={object3dEdges.toggleEnabled}/>
-                                <i className="mdl-icon-toggle__label material-icons">highlight</i>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div className="hudOverlayBottom" style={{display: 'none'}}>
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--1-offset mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                        <div className="recipe mdl-card mdl-shadow--4dp" style={{width: '100%'}}>
-                            <div className="mdl-card__title">
-                                <h2 className="mdl-card__title-text">Object 1234</h2>
-                            </div>
-                            <div className="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label"
-                                 style={{width: '100%', padding: '16px'}}>
-                                <textarea className="mdl-textfield__input" type="text" rows= "6" id="pacman_recipe" ></textarea>
-                                <label className="mdl-textfield__label" htmlFor="pacman_recipe">Text lines...</label>
-                            </div>
-                            <div className="mdl-card__actions">
-                                <a href="(URL or function)">Create</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="createDialogDiv" className="hudOverlayBottom" style={{display: 'none'}}>
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                        <div className="recipe mdl-card mdl-shadow--4dp" style={{width: '100%'}}>
-                            <div className="mdl-card__title">
-                                <h2 className="mdl-card__title-text">Create</h2>
-                            </div>
-                            <div style={{paddingLeft: '16px',paddingRight: '16px'}}>
-                                <div className="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label"
-                                     style={{width: '100%'}}>
-                                    <textarea className="mdl-textfield__input" type="text" rows= "7" id="pacman_recipe"></textarea>
-                                    <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
-                                </div>
-                            </div>
-                            <div className="mdl-card__actions mdl-card--border">
-                                <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                    Create
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="createButtonDiv" className="hudOverlayBottom">
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--1-col">
-                    </div>
-                    <div className="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                    </div>
-                    <div className="mdl-cell mdl-cell--1-col textalignRight">
-                        <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onClick={createClicked}>
-                            <i className="material-icons">add</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <RenderContainer/>
+            <ToolBar/>
+            <ActionBar/>
         </div>
     );
 
-    // <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style={{ width:'100%'}}>
-    //     {/*<label className="mdl-button mdl-js-button mdl-button--icon" htmlFor="pacman_recipe">*/}
-    //         <i className="material-icons">code</i>
-    //     </label>
-    //     <div className="mdl-textfield__expandable-holder" style={{ width:'100%'}}>
-    //         <input className="mdl-textfield__input" type="text" id="pacman_recipe"
-    //                onChange={pacman.onTextFieldChange}/>
-    //         <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
-    //     </div>
-    // </div>
-
-
     ReactDOM.render(<App />, reactContainer);
 
-    var splash = document.getElementById('splash');
+    let splash = document.getElementById('splash');
     splash.parentNode.removeChild(splash);
 
     componentHandler.upgradeDom();
@@ -133,29 +42,12 @@ module.exports.run = function() {
 
     cameraManager.addCamera(trackingCamera.getCamera());
 
-    //const facetSize = 20;
-    //const blocksPerFacet = 5;
-    //const blockSize = facetSize / blocksPerFacet;
-    //const normal = new THREE.Vector3(0, 1, 0);
-    //for (var x = 0; x < blocksPerFacet ; x++) {
-    //    for (var z = 0; z < blocksPerFacet; z++) {
-    //        var c = 0.5 + (x+z) / blocksPerFacet / 4;
-    //        var color = new THREE.Color(c,c,c);
-    //        var center = new THREE.Vector3(
-    //            (x - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet,
-    //            0,
-    //            (z - (blocksPerFacet - 1) / 2) * facetSize / blocksPerFacet
-    //        );
-    //        simpleObject.addSquare(center, blockSize, normal, color);
-    //    }
-    //}
-    //simpleObject.addSphere(new THREE.Vector3(-2, 1, 2), 1, 0xffff00);
     simpleObject.addOrigin();
     simpleObject.addDirectionalLight();
     simpleObject.addAmbientLight();
     simpleObject.addGridHelper();
     simpleObject.addRecipe(`Mesh Sphere radius=5 Lambert Color#888 translate -15,5,0`);
-    pacman.addPacman(new THREE.Vector3(0, 10, 0), document.getElementById('pacman_recipe'));
+    pacman.addPacman(new THREE.Vector3(0, 10, 0));
     gameLoop.start();
 
 };

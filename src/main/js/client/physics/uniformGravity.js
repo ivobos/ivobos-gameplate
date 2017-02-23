@@ -18,9 +18,8 @@ export function process() {
 }
 
 function processObject3d(object3d) {
-    if (!object3d.userData.velocity) {
-        object3d.userData.velocity = new THREE.Vector3();
+    if (object3d.userData.velocity) {
+        object3d.userData.velocity.add(gravity3);
     }
-    object3d.userData.velocity.add(gravity3);
 }
 

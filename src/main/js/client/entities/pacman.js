@@ -4,12 +4,6 @@ import * as threeDsl from "../dsl/threedsl";
 import * as sceneRenderer from "../scene/sceneRenderer";
 import * as object3dEdges from "./object3dEdges";
 
-export function onTextFieldChange(event) {
-    //console.log(event.target.value);
-    updatePackman(event.target.value);
-}
-
-//var recipe = "gms5lc833+0+0+0ms1lc034-2+1+4ms1lc034+2+1+4mblc084+0-4+0";
 var components = [];
 var center3d = null;
 
@@ -21,7 +15,11 @@ Group
     Mesh Sphere radius=3 Toon Color#280 translate -3,3,3
     Mesh Sphere radius=2 Lambert Color#008 translate 8,0,0`;
 
-function updatePackman(newRecipe) {
+export function getRecipe() {
+    return recipe;
+}
+
+export function updatePacman(newRecipe) {
     var newobject3d = threeDsl.parseAndExecute(newRecipe);
     //var newobject3d = objectGenerator.create(newRecipe);
     if (newobject3d) {
@@ -46,6 +44,7 @@ function removeComponentsFromScene() {
     }
     components = [];
 }
+
 function rememberComponents(object3d) {
     components.push(object3d);
     for (var i = 0; i < object3d.children.length; i++) {
@@ -53,35 +52,8 @@ function rememberComponents(object3d) {
     }
 }
 
-export function addPacman(center, textarea) {
-    textarea.value = recipe;
+export function addPacman(center) {
     center3d = center;
-    updatePackman(recipe);
-    //var object3d = objectGenerator.create();
-    ////var x = "Mesh(Sphere(Radius=5)Toon(Color=ff0)"
-    //object3d.position.copy(center);
-    //sceneInstance.getScene().add(object3d);
-
-//    var points = [];
-//    points.push(new THREE.Vector2(5, 10));
-//    points.push(new THREE.Vector2(10, 5));
-//    points.push(new THREE.Vector2(15, 10));
-//    points.push(new THREE.Vector2(10, 15));
-//    points.push(new THREE.Vector2(5, 10));
-//
-//    var geometry = new THREE.LatheBufferGeometry(points, 10, 0, Math.PI);
-//
-//    //var material = new THREE.MeshToonMaterial({
-//    //    color: 0xf33a3f,
-//    //    shading: THREE.SmoothShading,
-//    //    side: THREE.DoubleSide
-//    //});
-//    var material = new THREE.MeshPhongMaterial({ color: 0x444444});
-////    geometry.vertices
-//    var mesh = new THREE.Mesh(geometry, material);
-//    mesh.position.copy(center);
-//    //mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, -1, 0));
-//    sceneInstance.getScene().add(mesh);
 }
 
 export function addHeart(center, radius, color) {

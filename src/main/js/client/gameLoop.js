@@ -31,7 +31,7 @@ function frame() {
     while(dtSec > stepSec) {
         dtSec = dtSec - stepSec;
         //this.callMethodsWithData("getPhysicsData", "doPhysics");
-        cohesion.process();
+        // cohesion.process();
         uniformGravity.process();
         simpleDrag.process();
         momentum.process();

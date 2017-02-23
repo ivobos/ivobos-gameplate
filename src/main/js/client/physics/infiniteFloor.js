@@ -14,6 +14,8 @@ export function process() {
 }
 
 function processObject3d(object3d) {
+    var velocity = object3d.userData.velocity;
+    if (!velocity) return;
     var aabb = object3d.userData.aabb;
     if (!aabb) {
         object3d.userData.aabb = aabb = new THREE.Box3();
@@ -22,7 +24,6 @@ function processObject3d(object3d) {
     //console.log(aabb.min.y);
     if (aabb.min.y < floorY) {
         object3d.position.y += floorY - aabb.min.y;
-        var velocity = object3d.userData.velocity;
         if (velocity)
         {
             if (velocity.y < 0) velocity.y *= -1;

@@ -14,6 +14,19 @@ export function toggleEnabled(event) {
     }
 }
 
+export function isEnabled() {
+    return enabled;
+}
+
+export function setEnabled(newState) {
+    enabled = newState;
+    if (enabled) {
+        highlightComponents();
+    } else {
+        removeHighlights();
+    }
+}
+
 export function selectComponents(components) {
     selectedComponents = components;
     if (enabled) {
@@ -23,6 +36,7 @@ export function selectComponents(components) {
 }
 
 function highlightComponents() {
+    if (!selectedComponents) return;
     for (var object3d of selectedComponents) {
         if (object3d.isMesh) {
             var geometry = object3d.geometry;
