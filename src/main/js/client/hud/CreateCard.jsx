@@ -7,7 +7,6 @@ class CreateCard extends React.Component {
         this.state = {
             recipe: pacman.getRecipe()
         };
-        this.handleChange = this.handleChange.bind(this);
         pacman.updatePacman(this.state.recipe);
     }
     handleChange(event) {
@@ -15,24 +14,33 @@ class CreateCard extends React.Component {
         this.setState({recipe: newValue});
         pacman.updatePacman(newValue);
     }
+    handleCreate(event) {
+        pacman.create();
+        this.props.onCardClosed();
+    }
+    handleClear(event) {
+        pacman.clear();
+        this.props.onCardClosed();
+    }
     render() {
         return (
             <div className="recipe mdl-card mdl-shadow--4dp" style={{width: '100%'}}>
-                <div className="mdl-card__title">
-                    <h2 className="mdl-card__title-text">Create</h2>
-                </div>
                 <div style={{paddingLeft: '16px',paddingRight: '16px'}}>
-                    <div className="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label"
+                    <div className="mdl-textfield mdl-js-textfield"
                          style={{width: '100%'}}>
                         <textarea className="mdl-textfield__input" type="text" rows= "7" id="pacman_recipe"
-                                  value={this.state.recipe} onChange={this.handleChange}></textarea>
-                        <label className="mdl-textfield__label" htmlFor="pacman_recipe">Code</label>
+                                  value={this.state.recipe} onChange={ (e) => this.handleChange(e) }></textarea>
                     </div>
                 </div>
                 <div className="mdl-card__actions mdl-card--border">
                     <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                        onClick={ this.props.handleCreate } >
+                        onClick={ (e) => this.handleCreate(e) } >
                         Create
+                    </a>
+                    <a className="mdl-button mdl-js-button mdl-button--colored"
+                        style={{ float:"right"}}
+                        onClick={ (e) => this.handleClear(e) } >
+                        <i className="material-icons">clear</i>
                     </a>
                 </div>
             </div>

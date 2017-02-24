@@ -33,6 +33,17 @@ export function updatePacman(newRecipe) {
     }
 }
 
+export function create() {
+    for (let object3d of components) {
+        object3d.userData.velocity = new THREE.Vector3();
+    }
+    components = [];
+}
+
+export function clear() {
+    removeComponentsFromScene();
+}
+
 function removeComponentsFromScene() {
     // remove all parts of old object
     for (var object3d of components) {

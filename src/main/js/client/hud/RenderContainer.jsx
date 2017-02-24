@@ -4,9 +4,10 @@ import * as sceneRenderer from "../scene/sceneRenderer";
 class RenderContainer extends React.Component {
     render() {
         return (
-            <div id="rendererContainer" ref={node => {
-                node.appendChild(sceneRenderer.getRendererElement());
-            }}>
+            <div id="rendererContainer"
+                 ref={node => { node.appendChild(sceneRenderer.getRendererElement()); }}
+                 style={{ position:'absolute' }}
+            >
             </div>
         );
     }
