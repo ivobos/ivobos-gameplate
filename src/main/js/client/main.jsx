@@ -7,9 +7,9 @@ import * as ReactDOM from 'react-dom';
 import * as gameLoop from "./gameLoop";
 import * as simpleObject from "./entities/simpleObject";
 import * as cameraManager from "./camera/cameraManager";
-import * as fixedCamera from "./camera/fixedCamera";
-import * as trackingCamera from "./camera/trackingCamera";
 import * as pacman from "./entities/pacman";
+import * as browserState from "./browserState";
+import * as keyboardHandler from "./input/keyboardHandler";
 
 import RenderContainer from './hud/RenderContainer.jsx'
 import ToolBar from './hud/ToolBar.jsx';
@@ -17,6 +17,9 @@ import ActionBar from './hud/ActionBar.jsx';
 
 //injectTapEventPlugin();
 module.exports.run = function() {
+    browserState.init();
+    keyboardHandler.init();
+
     let reactContainer = document.createElement('div');
     reactContainer.id = "appContainer";
     document.body.appendChild(reactContainer);
@@ -36,11 +39,7 @@ module.exports.run = function() {
 
     componentHandler.upgradeDom();
 
-    cameraManager.addCamera(fixedCamera.getCamera());
-    fixedCamera.getCamera().position.set(35, 35, 35);
-    fixedCamera.getCamera().lookAt(new THREE.Vector3());
-
-    cameraManager.addCamera(trackingCamera.getCamera());
+    cameraManager.init();
 
     simpleObject.addOrigin();
     simpleObject.addDirectionalLight();

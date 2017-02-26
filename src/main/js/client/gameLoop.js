@@ -4,6 +4,8 @@ import * as momentum from "./physics/momentum";
 import * as uniformGravity from "./physics/uniformGravity";
 import * as simpleDrag from "./physics/simpleDrag";
 import * as cohesion from "./physics/cohesion";
+import * as sceneInstance from "./scene/sceneInstance";
+import * as object3dUtils from "./scene/object3dUtils";
 
 const updatesPerSec = 60;
 const stepSec = 1 / updatesPerSec;
@@ -30,12 +32,15 @@ function frame() {
     dtSec = dtSec + Math.min(1, (nowMsec - lastMsec) / 1000);
     while(dtSec > stepSec) {
         dtSec = dtSec - stepSec;
+        for (let object3d of sceneInstance.getScene().children) {
+            object3dUtils.processTickCallbacks(object3d);
+        }
         //this.callMethodsWithData("getPhysicsData", "doPhysics");
         // cohesion.process();
-        uniformGravity.process();
-        simpleDrag.process();
-        momentum.process();
-        infiniteFloor.process();
+        // uniformGravity.process();
+        // simpleDrag.process();
+        // momentum.process();
+        // infiniteFloor.process();
         sceneRenderer.setRenderRequired();
     }
     lastMsec = nowMsec;

@@ -7,6 +7,7 @@ export function setGravity(vector3) {
     gravity3.copy(vector3);
 }
 
+
 export function process() {
     var scene = sceneInstance.getScene();
     for (var i = 0; i < scene.children.length; i++) {
