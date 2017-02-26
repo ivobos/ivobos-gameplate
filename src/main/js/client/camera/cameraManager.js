@@ -4,11 +4,13 @@ import * as fixedCamera from "./fixedCamera";
 import * as trackingCamera from "./trackingCamera";
 import * as userControlledCamera from "./userControlledCamera";
 import * as sceneInstance from "../scene/sceneInstance";
+import * as cameraTarget from "./cameraTarget";
 
 let currentCameraIdx = 0;
 let cameras = [];
 
 export function init() {
+    cameraTarget.init();
     // user controlled
     addCamera(userControlledCamera.getCamera());
     // fixed camera

@@ -10,6 +10,9 @@ import * as cameraManager from "./camera/cameraManager";
 import * as pacman from "./entities/pacman";
 import * as browserState from "./browserState";
 import * as keyboardHandler from "./input/keyboardHandler";
+import * as mouse3dCursor from "./input/mouse3dCursor";
+import * as mouseHandler from "./input/mouseHandler";
+
 
 import RenderContainer from './hud/RenderContainer.jsx'
 import ToolBar from './hud/ToolBar.jsx';
@@ -19,6 +22,7 @@ import ActionBar from './hud/ActionBar.jsx';
 module.exports.run = function() {
     browserState.init();
     keyboardHandler.init();
+    mouseHandler.init();
 
     let reactContainer = document.createElement('div');
     reactContainer.id = "appContainer";
@@ -41,12 +45,13 @@ module.exports.run = function() {
 
     cameraManager.init();
 
-    simpleObject.addOrigin();
+    // simpleObject.addOrigin();
+    mouse3dCursor.init();
     simpleObject.addDirectionalLight();
     simpleObject.addAmbientLight();
     simpleObject.addGridHelper();
-    simpleObject.addRecipe(`Mesh Sphere radius=5 Lambert Color#888 translate -15,5,0`);
-    pacman.addPacman(new THREE.Vector3(0, 10, 0));
+    simpleObject.addRecipe(`Mesh Sphere radius=1 Lambert Color#888 translate -6,1,0`);
+    pacman.addPacman(new THREE.Vector3(0, 1, 0));
     gameLoop.start();
 
 };

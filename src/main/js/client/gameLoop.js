@@ -26,14 +26,20 @@ export function start() {
 
 function frame() {
     //stats.begin();
+    for (let object3d of sceneInstance.getScene().children) {
+        object3dUtils.processCallbacks(object3d, object3dUtils.PRE_RENDER);
+    }
     sceneRenderer.doRender();
+    for (let object3d of sceneInstance.getScene().children) {
+        object3dUtils.processCallbacks(object3d, object3dUtils.POST_RENDER);
+    }
     //this.callMethodsWithData("getInputData", "doInput");
-    var nowMsec = timestamp();
+    let nowMsec = timestamp();
     dtSec = dtSec + Math.min(1, (nowMsec - lastMsec) / 1000);
     while(dtSec > stepSec) {
         dtSec = dtSec - stepSec;
         for (let object3d of sceneInstance.getScene().children) {
-            object3dUtils.processTickCallbacks(object3d);
+            object3dUtils.processCallbacks(object3d, object3dUtils.ON_TICK);
         }
         //this.callMethodsWithData("getPhysicsData", "doPhysics");
         // cohesion.process();

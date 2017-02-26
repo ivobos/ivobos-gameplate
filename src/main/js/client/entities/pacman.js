@@ -11,9 +11,9 @@ var recipe =
 `default Color#fff
 default Lambert Color#fff
 Group 
-    Mesh Sphere radius=5 Lambert Color#080
-    Mesh Sphere radius=3 Toon Color#280 translate -3,3,3
-    Mesh Sphere radius=2 Lambert Color#008 translate 8,0,0`;
+    Mesh Sphere radius=1 Lambert Color#080
+    Mesh Sphere radius=1 Toon Color#280 translate -1,1,1
+    Mesh Sphere radius=1 Lambert Color#008 translate 1,0,0`;
 
 export function getRecipe() {
     return recipe;
