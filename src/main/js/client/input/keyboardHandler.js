@@ -10,10 +10,14 @@ export function isKeyDown(key) {
 }
 
 function onKeyDownCb(event) {
-    keyMap[event.key] = true;
+    if (event.target == document.body) {
+        keyMap[event.key] = true;
+    }
 }
 
 function onKeyUpCb(event) {
-    delete keyMap[event.key];
+    if (event.target == document.body) {
+        delete keyMap[event.key];
+    }
 }
 

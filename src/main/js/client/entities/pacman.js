@@ -3,11 +3,12 @@ import * as sceneInstance from "../scene/sceneInstance";
 import * as threeDsl from "../dsl/threedsl";
 import * as sceneRenderer from "../scene/sceneRenderer";
 import * as object3dEdges from "./object3dEdges";
+import * as cameraTarget from "../camera/cameraTarget";
 
-var components = [];
-var center3d = null;
+let components = [];
+let center3d = null;
 
-var recipe =
+let recipe =
 `default Color#fff
 default Lambert Color#fff
 Group 
@@ -19,8 +20,12 @@ export function getRecipe() {
     return recipe;
 }
 
+export function startCreation() {
+    center3d = cameraTarget.getTarget().position.clone();
+}
+
 export function updatePacman(newRecipe) {
-    var newobject3d = threeDsl.parseAndExecute(newRecipe);
+    let newobject3d = threeDsl.parseAndExecute(newRecipe);
     //var newobject3d = objectGenerator.create(newRecipe);
     if (newobject3d) {
         removeComponentsFromScene();

@@ -7,6 +7,7 @@ class CreateCard extends React.Component {
         this.state = {
             recipe: pacman.getRecipe()
         };
+        pacman.startCreation();
         pacman.updatePacman(this.state.recipe);
     }
     handleChange(event) {
