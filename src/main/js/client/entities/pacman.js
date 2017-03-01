@@ -3,7 +3,7 @@ import * as sceneInstance from "../scene/sceneInstance";
 import * as threeDsl from "../dsl/threedsl";
 import * as sceneRenderer from "../scene/sceneRenderer";
 import * as object3dEdges from "./object3dEdges";
-import * as cameraTarget from "../camera/cameraTarget";
+import * as cameraSubject from "../camera/cameraSubject";
 
 let components = [];
 let center3d = null;
@@ -21,7 +21,7 @@ export function getRecipe() {
 }
 
 export function startCreation() {
-    center3d = cameraTarget.getTarget().position.clone();
+    center3d = cameraSubject.getSubject().position.clone();
 }
 
 export function updatePacman(newRecipe) {

@@ -30,8 +30,7 @@ function onWindowResize() {
 export function doRender() {
     if (renderRequired) {
         renderRequired = false;
-        var camera = cameraManager.getCurrentCamera();
-        camera.onBeforeRender();
+        var camera = cameraManager.getCamera();
         var scene = sceneInstance.getScene();
         //var children = scene.children;
         //var toDelete = children.slice().filter(function(i) { return data.indexOf(i) < 0; });

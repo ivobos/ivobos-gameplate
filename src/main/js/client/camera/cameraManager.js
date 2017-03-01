@@ -1,35 +1,25 @@
 import * as THREE from 'three'
 
-import * as fixedCamera from "./fixedCamera";
-import * as trackingCamera from "./trackingCamera";
 import * as userControlledCamera from "./userControlledCamera";
-import * as sceneInstance from "../scene/sceneInstance";
-import * as cameraTarget from "./cameraTarget";
+import * as cameraSubject from "./cameraSubject";
+import FpsCameraStrategy from "./FpsCameraStrategy";
+import TrackingCameraStrategy from "./TrackingCameraStrategy";
 
 let currentCameraIdx = 0;
-let cameras = [];
+let cameraStrategies = [];
 
 export function init() {
-    cameraTarget.init();
-    // user controlled
-    addCamera(userControlledCamera.getCamera());
-    // fixed camera
-    addCamera(fixedCamera.getCamera());
-    fixedCamera.getCamera().position.set(35, 35, 35);
-    fixedCamera.getCamera().lookAt(new THREE.Vector3());
-    // tracking camera
-    addCamera(trackingCamera.getCamera());
+    cameraStrategies.push(new TrackingCameraStrategy({ followOffset: new THREE.Vector3(0, 2, -15)}));
+    cameraStrategies.push(new FpsCameraStrategy({ offset: new THREE.Vector3(0, 2, 0)}));
+    userControlledCamera.init(cameraStrategies[currentCameraIdx]);
 }
 
-export function addCamera(camera) {
-    cameras.push(camera);
-    sceneInstance.getScene().add(camera);
+export function getCamera() {
+    return userControlledCamera.getCamera3d();
 }
 
-export function getCurrentCamera() {
-    return cameras[currentCameraIdx];
+export function selectNextCameraMode() {
+    currentCameraIdx = (currentCameraIdx + 1) % cameraStrategies.length;
+    userControlledCamera.setCameraStrategy(cameraStrategies[currentCameraIdx]);
 }
 
-export function selectNextCamera() {
-    currentCameraIdx = (currentCameraIdx + 1) % cameras.length;
-}

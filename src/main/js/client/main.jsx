@@ -12,8 +12,8 @@ import * as browserState from "./browserState";
 import * as keyboardHandler from "./input/keyboardHandler";
 import * as mouse3dCursor from "./input/mouse3dCursor";
 import * as mouseHandler from "./input/mouseHandler";
-
-
+import SimpleController from "./entities/controllers/SimpleController";
+import * as cameraSubject from "./camera/cameraSubject";
 import RenderContainer from './hud/RenderContainer.jsx'
 import ToolBar from './hud/ToolBar.jsx';
 import ActionBar from './hud/ActionBar.jsx';
@@ -50,7 +50,9 @@ module.exports.run = function() {
     simpleObject.addDirectionalLight();
     simpleObject.addAmbientLight();
     simpleObject.addGridHelper();
-    simpleObject.addRecipe(`Mesh Sphere radius=1 Lambert Color#888 translate -6,1,0`);
+    let player = simpleObject.addRecipe(`Mesh Sphere radius=1 Lambert Color#888 translate -6,1,0`);
+    player.userData.controller = new SimpleController(player);
+    cameraSubject.setSubject(player);
     pacman.addPacman(new THREE.Vector3(0, 1, 0));
     gameLoop.start();
 

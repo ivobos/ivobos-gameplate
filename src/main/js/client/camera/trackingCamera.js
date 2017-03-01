@@ -30,8 +30,6 @@ if (debugCamera) {
 //    flyControls = new THREE.FlyControls(debugCamera, containerElem);
 }
 
-camera.onBeforeRender = updateCamera;
-
 if (debug) {
     sceneInstance.getScene().add(center);
 //    sceneInstance.getScene().add(new THREE.CameraHelper(camera));

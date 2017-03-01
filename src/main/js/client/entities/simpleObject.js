@@ -65,6 +65,7 @@ export function addRecipe(recipe, position) {
     var object3d = threeDsl.parseAndExecute(recipe);
     sceneInstance.getScene().add(object3d);
     if (position) object3d.position.add(position);
+    return object3d;
 }
 
 export function addSkeleton() {
