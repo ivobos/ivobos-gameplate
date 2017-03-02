@@ -10,6 +10,7 @@ class TrackingCameraStrategy extends CameraStrategyInterface {
         camera3d.position.add(offset);
         camera3d.quaternion.copy(subject.quaternion);
         camera3d.rotateY(180 * THREE.Math.DEG2RAD);
+        camera3d.lookAt(subject.position);
     }
 
 }

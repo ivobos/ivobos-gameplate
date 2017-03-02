@@ -9,12 +9,12 @@ let components = [];
 let center3d = null;
 
 let recipe =
-`default Color#fff
-default Lambert Color#fff
+`default Color #fff
+default Lambert Color #fff
 Group 
-    Mesh Sphere radius=1 Lambert Color#080
-    Mesh Sphere radius=1 Toon Color#280 translate -1,1,1
-    Mesh Sphere radius=1 Lambert Color#008 translate 1,0,0`;
+    Mesh Box 1,2,1 Lambert Color #080
+    Mesh Box 1,1,1 Toon Color #280 translate -1,0,0
+    Mesh Box 1,1,1  Lambert Color #008 translate 1,0,0`;
 
 export function getRecipe() {
     return recipe;

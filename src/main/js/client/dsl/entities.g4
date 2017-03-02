@@ -13,8 +13,8 @@ object3d :
     | object3d 'translate' vector3     # translate
     ;
 geometry :
-    'Box'               # box
-    | 'Sphere' radius?  # sphere
+    'Box' vector3                       # box
+    | 'Sphere' radius?                  # sphere
     ;
 radius : 'radius' '='? SIGNED_INT;
 material :

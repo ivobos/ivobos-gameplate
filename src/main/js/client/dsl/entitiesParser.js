@@ -6,7 +6,7 @@ var entitiesVisitor = require('./entitiesVisitor').entitiesVisitor;
 var grammarFileName = "entities.g4";
 
 var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
-    "\u0003\u0014l\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0003\u0014m\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
     "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0003\u0002\u0007",
     "\u0002\u0018\n\u0002\f\u0002\u000e\u0002\u001b\u000b\u0002\u0003\u0003",
@@ -15,59 +15,60 @@ var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
     ")\n\u0004\r\u0004\u000e\u0004*\u0003\u0004\u0003\u0004\u0003\u0004\u0005",
     "\u00040\n\u0004\u0005\u00042\n\u0004\u0003\u0004\u0003\u0004\u0003\u0004",
     "\u0007\u00047\n\u0004\f\u0004\u000e\u0004:\u000b\u0004\u0003\u0005\u0003",
-    "\u0005\u0003\u0005\u0005\u0005?\n\u0005\u0005\u0005A\n\u0005\u0003\u0006",
-    "\u0003\u0006\u0005\u0006E\n\u0006\u0003\u0006\u0003\u0006\u0003\u0007",
-    "\u0003\u0007\u0005\u0007K\n\u0007\u0003\u0007\u0003\u0007\u0005\u0007",
-    "O\n\u0007\u0005\u0007Q\n\u0007\u0003\b\u0003\b\u0005\bU\n\b\u0003\b",
-    "\u0003\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0005\t^\n\t\u0003",
-    "\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\u000b\u0003\u000b\u0003",
-    "\u000b\u0003\u000b\u0003\u000b\u0003\u000b\u0003\u000b\u0002\u0003\u0006",
-    "\f\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0002\u0002t\u0002",
-    "\u0019\u0003\u0002\u0002\u0002\u0004#\u0003\u0002\u0002\u0002\u0006",
-    "1\u0003\u0002\u0002\u0002\b@\u0003\u0002\u0002\u0002\nB\u0003\u0002",
-    "\u0002\u0002\fP\u0003\u0002\u0002\u0002\u000eR\u0003\u0002\u0002\u0002",
-    "\u0010]\u0003\u0002\u0002\u0002\u0012_\u0003\u0002\u0002\u0002\u0014",
-    "e\u0003\u0002\u0002\u0002\u0016\u0018\u0005\u0004\u0003\u0002\u0017",
-    "\u0016\u0003\u0002\u0002\u0002\u0018\u001b\u0003\u0002\u0002\u0002\u0019",
-    "\u0017\u0003\u0002\u0002\u0002\u0019\u001a\u0003\u0002\u0002\u0002\u001a",
-    "\u0003\u0003\u0002\u0002\u0002\u001b\u0019\u0003\u0002\u0002\u0002\u001c",
-    "\u001d\u0007\u0003\u0002\u0002\u001d$\u0005\b\u0005\u0002\u001e\u001f",
-    "\u0007\u0003\u0002\u0002\u001f$\u0005\f\u0007\u0002 !\u0007\u0003\u0002",
-    "\u0002!$\u0005\u000e\b\u0002\"$\u0005\u0006\u0004\u0002#\u001c\u0003",
-    "\u0002\u0002\u0002#\u001e\u0003\u0002\u0002\u0002# \u0003\u0002\u0002",
-    "\u0002#\"\u0003\u0002\u0002\u0002$\u0005\u0003\u0002\u0002\u0002%&\b",
-    "\u0004\u0001\u0002&(\u0007\u0004\u0002\u0002\')\u0005\u0006\u0004\u0002",
-    "(\'\u0003\u0002\u0002\u0002)*\u0003\u0002\u0002\u0002*(\u0003\u0002",
-    "\u0002\u0002*+\u0003\u0002\u0002\u0002+2\u0003\u0002\u0002\u0002,-\u0007",
-    "\u0005\u0002\u0002-/\u0005\b\u0005\u0002.0\u0005\f\u0007\u0002/.\u0003",
-    "\u0002\u0002\u0002/0\u0003\u0002\u0002\u000202\u0003\u0002\u0002\u0002",
-    "1%\u0003\u0002\u0002\u00021,\u0003\u0002\u0002\u000228\u0003\u0002\u0002",
-    "\u000234\f\u0003\u0002\u000245\u0007\u0006\u0002\u000257\u0005\u0014",
-    "\u000b\u000263\u0003\u0002\u0002\u00027:\u0003\u0002\u0002\u000286\u0003",
-    "\u0002\u0002\u000289\u0003\u0002\u0002\u00029\u0007\u0003\u0002\u0002",
-    "\u0002:8\u0003\u0002\u0002\u0002;A\u0007\u0007\u0002\u0002<>\u0007\b",
-    "\u0002\u0002=?\u0005\n\u0006\u0002>=\u0003\u0002\u0002\u0002>?\u0003",
-    "\u0002\u0002\u0002?A\u0003\u0002\u0002\u0002@;\u0003\u0002\u0002\u0002",
-    "@<\u0003\u0002\u0002\u0002A\t\u0003\u0002\u0002\u0002BD\u0007\t\u0002",
-    "\u0002CE\u0007\n\u0002\u0002DC\u0003\u0002\u0002\u0002DE\u0003\u0002",
-    "\u0002\u0002EF\u0003\u0002\u0002\u0002FG\u0007\u0012\u0002\u0002G\u000b",
-    "\u0003\u0002\u0002\u0002HJ\u0007\u000b\u0002\u0002IK\u0005\u000e\b\u0002",
-    "JI\u0003\u0002\u0002\u0002JK\u0003\u0002\u0002\u0002KQ\u0003\u0002\u0002",
-    "\u0002LN\u0007\f\u0002\u0002MO\u0005\u000e\b\u0002NM\u0003\u0002\u0002",
-    "\u0002NO\u0003\u0002\u0002\u0002OQ\u0003\u0002\u0002\u0002PH\u0003\u0002",
-    "\u0002\u0002PL\u0003\u0002\u0002\u0002Q\r\u0003\u0002\u0002\u0002RT",
-    "\u0007\r\u0002\u0002SU\u0007\n\u0002\u0002TS\u0003\u0002\u0002\u0002",
-    "TU\u0003\u0002\u0002\u0002UV\u0003\u0002\u0002\u0002VW\u0005\u0010\t",
-    "\u0002W\u000f\u0003\u0002\u0002\u0002X^\u0007\u0011\u0002\u0002Y^\u0007",
-    "\u0013\u0002\u0002Z^\u0005\u0012\n\u0002[^\u0007\u000f\u0002\u0002\\",
-    "^\u0007\u0010\u0002\u0002]X\u0003\u0002\u0002\u0002]Y\u0003\u0002\u0002",
-    "\u0002]Z\u0003\u0002\u0002\u0002][\u0003\u0002\u0002\u0002]\\\u0003",
-    "\u0002\u0002\u0002^\u0011\u0003\u0002\u0002\u0002_`\u0007\u0013\u0002",
-    "\u0002`a\u0007\u000e\u0002\u0002ab\u0007\u0013\u0002\u0002bc\u0007\u000e",
-    "\u0002\u0002cd\u0007\u0013\u0002\u0002d\u0013\u0003\u0002\u0002\u0002",
-    "ef\u0007\u0012\u0002\u0002fg\u0007\u000e\u0002\u0002gh\u0007\u0012\u0002",
-    "\u0002hi\u0007\u000e\u0002\u0002ij\u0007\u0012\u0002\u0002j\u0015\u0003",
-    "\u0002\u0002\u0002\u0010\u0019#*/18>@DJNPT]"].join("");
+    "\u0005\u0003\u0005\u0003\u0005\u0005\u0005@\n\u0005\u0005\u0005B\n\u0005",
+    "\u0003\u0006\u0003\u0006\u0005\u0006F\n\u0006\u0003\u0006\u0003\u0006",
+    "\u0003\u0007\u0003\u0007\u0005\u0007L\n\u0007\u0003\u0007\u0003\u0007",
+    "\u0005\u0007P\n\u0007\u0005\u0007R\n\u0007\u0003\b\u0003\b\u0005\bV",
+    "\n\b\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0005\t",
+    "_\n\t\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\u000b\u0003",
+    "\u000b\u0003\u000b\u0003\u000b\u0003\u000b\u0003\u000b\u0003\u000b\u0002",
+    "\u0003\u0006\f\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0002",
+    "\u0002u\u0002\u0019\u0003\u0002\u0002\u0002\u0004#\u0003\u0002\u0002",
+    "\u0002\u00061\u0003\u0002\u0002\u0002\bA\u0003\u0002\u0002\u0002\nC",
+    "\u0003\u0002\u0002\u0002\fQ\u0003\u0002\u0002\u0002\u000eS\u0003\u0002",
+    "\u0002\u0002\u0010^\u0003\u0002\u0002\u0002\u0012`\u0003\u0002\u0002",
+    "\u0002\u0014f\u0003\u0002\u0002\u0002\u0016\u0018\u0005\u0004\u0003",
+    "\u0002\u0017\u0016\u0003\u0002\u0002\u0002\u0018\u001b\u0003\u0002\u0002",
+    "\u0002\u0019\u0017\u0003\u0002\u0002\u0002\u0019\u001a\u0003\u0002\u0002",
+    "\u0002\u001a\u0003\u0003\u0002\u0002\u0002\u001b\u0019\u0003\u0002\u0002",
+    "\u0002\u001c\u001d\u0007\u0003\u0002\u0002\u001d$\u0005\b\u0005\u0002",
+    "\u001e\u001f\u0007\u0003\u0002\u0002\u001f$\u0005\f\u0007\u0002 !\u0007",
+    "\u0003\u0002\u0002!$\u0005\u000e\b\u0002\"$\u0005\u0006\u0004\u0002",
+    "#\u001c\u0003\u0002\u0002\u0002#\u001e\u0003\u0002\u0002\u0002# \u0003",
+    "\u0002\u0002\u0002#\"\u0003\u0002\u0002\u0002$\u0005\u0003\u0002\u0002",
+    "\u0002%&\b\u0004\u0001\u0002&(\u0007\u0004\u0002\u0002\')\u0005\u0006",
+    "\u0004\u0002(\'\u0003\u0002\u0002\u0002)*\u0003\u0002\u0002\u0002*(",
+    "\u0003\u0002\u0002\u0002*+\u0003\u0002\u0002\u0002+2\u0003\u0002\u0002",
+    "\u0002,-\u0007\u0005\u0002\u0002-/\u0005\b\u0005\u0002.0\u0005\f\u0007",
+    "\u0002/.\u0003\u0002\u0002\u0002/0\u0003\u0002\u0002\u000202\u0003\u0002",
+    "\u0002\u00021%\u0003\u0002\u0002\u00021,\u0003\u0002\u0002\u000228\u0003",
+    "\u0002\u0002\u000234\f\u0003\u0002\u000245\u0007\u0006\u0002\u00025",
+    "7\u0005\u0014\u000b\u000263\u0003\u0002\u0002\u00027:\u0003\u0002\u0002",
+    "\u000286\u0003\u0002\u0002\u000289\u0003\u0002\u0002\u00029\u0007\u0003",
+    "\u0002\u0002\u0002:8\u0003\u0002\u0002\u0002;<\u0007\u0007\u0002\u0002",
+    "<B\u0005\u0014\u000b\u0002=?\u0007\b\u0002\u0002>@\u0005\n\u0006\u0002",
+    "?>\u0003\u0002\u0002\u0002?@\u0003\u0002\u0002\u0002@B\u0003\u0002\u0002",
+    "\u0002A;\u0003\u0002\u0002\u0002A=\u0003\u0002\u0002\u0002B\t\u0003",
+    "\u0002\u0002\u0002CE\u0007\t\u0002\u0002DF\u0007\n\u0002\u0002ED\u0003",
+    "\u0002\u0002\u0002EF\u0003\u0002\u0002\u0002FG\u0003\u0002\u0002\u0002",
+    "GH\u0007\u0012\u0002\u0002H\u000b\u0003\u0002\u0002\u0002IK\u0007\u000b",
+    "\u0002\u0002JL\u0005\u000e\b\u0002KJ\u0003\u0002\u0002\u0002KL\u0003",
+    "\u0002\u0002\u0002LR\u0003\u0002\u0002\u0002MO\u0007\f\u0002\u0002N",
+    "P\u0005\u000e\b\u0002ON\u0003\u0002\u0002\u0002OP\u0003\u0002\u0002",
+    "\u0002PR\u0003\u0002\u0002\u0002QI\u0003\u0002\u0002\u0002QM\u0003\u0002",
+    "\u0002\u0002R\r\u0003\u0002\u0002\u0002SU\u0007\r\u0002\u0002TV\u0007",
+    "\n\u0002\u0002UT\u0003\u0002\u0002\u0002UV\u0003\u0002\u0002\u0002V",
+    "W\u0003\u0002\u0002\u0002WX\u0005\u0010\t\u0002X\u000f\u0003\u0002\u0002",
+    "\u0002Y_\u0007\u0011\u0002\u0002Z_\u0007\u0013\u0002\u0002[_\u0005\u0012",
+    "\n\u0002\\_\u0007\u000f\u0002\u0002]_\u0007\u0010\u0002\u0002^Y\u0003",
+    "\u0002\u0002\u0002^Z\u0003\u0002\u0002\u0002^[\u0003\u0002\u0002\u0002",
+    "^\\\u0003\u0002\u0002\u0002^]\u0003\u0002\u0002\u0002_\u0011\u0003\u0002",
+    "\u0002\u0002`a\u0007\u0013\u0002\u0002ab\u0007\u000e\u0002\u0002bc\u0007",
+    "\u0013\u0002\u0002cd\u0007\u000e\u0002\u0002de\u0007\u0013\u0002\u0002",
+    "e\u0013\u0003\u0002\u0002\u0002fg\u0007\u0012\u0002\u0002gh\u0007\u000e",
+    "\u0002\u0002hi\u0007\u0012\u0002\u0002ij\u0007\u000e\u0002\u0002jk\u0007",
+    "\u0012\u0002\u0002k\u0015\u0003\u0002\u0002\u0002\u0010\u0019#*/18?",
+    "AEKOQU^"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -646,6 +647,9 @@ BoxContext.prototype.constructor = BoxContext;
 
 entitiesParser.BoxContext = BoxContext;
 
+BoxContext.prototype.vector3 = function() {
+    return this.getTypedRuleContext(Vector3Context,0);
+};
 BoxContext.prototype.accept = function(visitor) {
     if ( visitor instanceof entitiesVisitor ) {
         return visitor.visitBox(this);
@@ -663,7 +667,7 @@ entitiesParser.prototype.geometry = function() {
     var localctx = new GeometryContext(this, this._ctx, this.state);
     this.enterRule(localctx, 6, entitiesParser.RULE_geometry);
     try {
-        this.state = 62;
+        this.state = 63;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case entitiesParser.T__4:
@@ -671,17 +675,19 @@ entitiesParser.prototype.geometry = function() {
             this.enterOuterAlt(localctx, 1);
             this.state = 57;
             this.match(entitiesParser.T__4);
+            this.state = 58;
+            this.vector3();
             break;
         case entitiesParser.T__5:
             localctx = new SphereContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 58;
+            this.state = 59;
             this.match(entitiesParser.T__5);
-            this.state = 60;
+            this.state = 61;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
             if(la_===1) {
-                this.state = 59;
+                this.state = 60;
                 this.radius();
 
             }
@@ -743,17 +749,17 @@ entitiesParser.prototype.radius = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 64;
+        this.state = 65;
         this.match(entitiesParser.T__6);
-        this.state = 66;
+        this.state = 67;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===entitiesParser.T__7) {
-            this.state = 65;
+            this.state = 66;
             this.match(entitiesParser.T__7);
         }
 
-        this.state = 68;
+        this.state = 69;
         this.match(entitiesParser.SIGNED_INT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -846,19 +852,19 @@ entitiesParser.prototype.material = function() {
     var localctx = new MaterialContext(this, this._ctx, this.state);
     this.enterRule(localctx, 10, entitiesParser.RULE_material);
     try {
-        this.state = 78;
+        this.state = 79;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case entitiesParser.T__8:
             localctx = new LambertContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 70;
+            this.state = 71;
             this.match(entitiesParser.T__8);
-            this.state = 72;
+            this.state = 73;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,9,this._ctx);
             if(la_===1) {
-                this.state = 71;
+                this.state = 72;
                 this.color();
 
             }
@@ -866,13 +872,13 @@ entitiesParser.prototype.material = function() {
         case entitiesParser.T__9:
             localctx = new ToonContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 74;
+            this.state = 75;
             this.match(entitiesParser.T__9);
-            this.state = 76;
+            this.state = 77;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
             if(la_===1) {
-                this.state = 75;
+                this.state = 76;
                 this.color();
 
             }
@@ -934,17 +940,17 @@ entitiesParser.prototype.color = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 80;
+        this.state = 81;
         this.match(entitiesParser.T__10);
-        this.state = 82;
+        this.state = 83;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===entitiesParser.T__7) {
-            this.state = 81;
+            this.state = 82;
             this.match(entitiesParser.T__7);
         }
 
-        this.state = 84;
+        this.state = 85;
         this.colorValue();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1087,42 +1093,42 @@ entitiesParser.prototype.colorValue = function() {
     var localctx = new ColorValueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 14, entitiesParser.RULE_colorValue);
     try {
-        this.state = 91;
+        this.state = 92;
         this._errHandler.sync(this);
         var la_ = this._interp.adaptivePredict(this._input,13,this._ctx);
         switch(la_) {
         case 1:
             localctx = new HexColorContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 86;
+            this.state = 87;
             this.match(entitiesParser.HEX);
             break;
 
         case 2:
             localctx = new IntColorContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 87;
+            this.state = 88;
             this.match(entitiesParser.INT);
             break;
 
         case 3:
             localctx = new RgbColorContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
-            this.state = 88;
+            this.state = 89;
             this.rgb();
             break;
 
         case 4:
             localctx = new HexTripletColorContext(this, localctx);
             this.enterOuterAlt(localctx, 4);
-            this.state = 89;
+            this.state = 90;
             this.match(entitiesParser.SHORT_HEX_TRIPLET);
             break;
 
         case 5:
             localctx = new HexTripletColorContext(this, localctx);
             this.enterOuterAlt(localctx, 5);
-            this.state = 90;
+            this.state = 91;
             this.match(entitiesParser.LONG_HEX_TRIPLET);
             break;
 
@@ -1188,15 +1194,15 @@ entitiesParser.prototype.rgb = function() {
     this.enterRule(localctx, 16, entitiesParser.RULE_rgb);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 93;
-        this.match(entitiesParser.INT);
         this.state = 94;
-        this.match(entitiesParser.T__11);
-        this.state = 95;
         this.match(entitiesParser.INT);
-        this.state = 96;
+        this.state = 95;
         this.match(entitiesParser.T__11);
+        this.state = 96;
+        this.match(entitiesParser.INT);
         this.state = 97;
+        this.match(entitiesParser.T__11);
+        this.state = 98;
         this.match(entitiesParser.INT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1259,15 +1265,15 @@ entitiesParser.prototype.vector3 = function() {
     this.enterRule(localctx, 18, entitiesParser.RULE_vector3);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 99;
-        this.match(entitiesParser.SIGNED_INT);
         this.state = 100;
-        this.match(entitiesParser.T__11);
-        this.state = 101;
         this.match(entitiesParser.SIGNED_INT);
-        this.state = 102;
+        this.state = 101;
         this.match(entitiesParser.T__11);
+        this.state = 102;
+        this.match(entitiesParser.SIGNED_INT);
         this.state = 103;
+        this.match(entitiesParser.T__11);
+        this.state = 104;
         this.match(entitiesParser.SIGNED_INT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {

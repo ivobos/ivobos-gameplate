@@ -73,7 +73,8 @@ ProgramVisitor.prototype.visitTranslate = function(ctx) {
 };
 
 ProgramVisitor.prototype.visitBox = function(ctx) {
-    return new THREE.BoxGeometry(1,1,1);
+    let vector3 = this.visit(ctx.vector3());
+    return new THREE.BoxGeometry(vector3.x,vector3.y,vector3.z);
 };
 
 ProgramVisitor.prototype.visitSphere = function(ctx) {
