@@ -25,11 +25,11 @@ module.exports.run = function() {
     mouseHandler.init();
 
     let reactContainer = document.createElement('div');
-    reactContainer.id = "appContainer";
+    reactContainer.style.height = "100%";
     document.body.appendChild(reactContainer);
 
     const App = () => (
-        <div id="app">
+        <div id="app" style={{ display:"flex", flexDirection:"column", justifyContent:"space-between", height:"100%"}}>
             <RenderContainer/>
             <ToolBar/>
             <ActionBar/>
@@ -52,7 +52,7 @@ module.exports.run = function() {
     simpleObject.addGridHelper();
     let player = simpleObject.addRecipe(`Mesh Sphere radius=1 Lambert Color#888 translate -6,1,0`);
     player.userData.controller = new SimpleController(player);
-    cameraSubject.setSubject(player);
+    cameraSubject.setSubject(player, new THREE.Vector3(0, 0, 5));
     pacman.addPacman(new THREE.Vector3(0, 1, 0));
     gameLoop.start();
 

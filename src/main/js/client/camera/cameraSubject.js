@@ -1,12 +1,18 @@
 
 let target = undefined;
+let focusOffset = undefined;
 
 export function getSubject() {
     return target;
 }
 
-export function setSubject(object3d) {
+export function getFocusPoint() {
+    return target.position.clone().add(focusOffset.clone().applyQuaternion(target.quaternion));
+}
+
+export function setSubject(object3d, offset) {
     target = object3d;
+    focusOffset = offset;
 }
 
 export function setTarget(position, quaternion) {

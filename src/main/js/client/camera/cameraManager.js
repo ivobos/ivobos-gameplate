@@ -8,7 +8,7 @@ let currentCameraIdx = 0;
 let cameraStrategies = [];
 
 export function init() {
-    cameraStrategies.push(new TrackingCameraStrategy({ followOffset: new THREE.Vector3(0, 10, -15)}));
+    cameraStrategies.push(new TrackingCameraStrategy( { followOffset: new THREE.Vector3(0, 10, -15) } ));
     cameraStrategies.push(new FpsCameraStrategy({ offset: new THREE.Vector3(0, 2, 0)}));
     userControlledCamera.init(cameraStrategies[currentCameraIdx]);
 }

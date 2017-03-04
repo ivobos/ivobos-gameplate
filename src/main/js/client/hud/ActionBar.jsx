@@ -12,7 +12,7 @@ class ActionBar extends React.Component {
     }
     render() {
         return (
-            <div style={{ position:"absolute", bottom:"0px", width:"100%"}}>
+            <div style={{ bottom:"0px", width:"100%"}}>
                 { this.renderContent() }
             </div>
         );

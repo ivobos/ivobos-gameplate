@@ -32,5 +32,6 @@ function mouseDownCb(event) {
 }
 
 function clickCb(event) {
+    // console.log("mouseHandler.clickCb");
     event.preventDefault();
 }

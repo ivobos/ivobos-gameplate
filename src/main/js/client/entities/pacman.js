@@ -21,7 +21,7 @@ export function getRecipe() {
 }
 
 export function startCreation() {
-    center3d = cameraSubject.getSubject().position.clone();
+    center3d = cameraSubject.getFocusPoint().clone();
 }
 
 export function updatePacman(newRecipe) {
