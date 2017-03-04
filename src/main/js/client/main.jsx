@@ -14,9 +14,7 @@ import * as mouse3dCursor from "./input/mouse3dCursor";
 import * as mouseHandler from "./input/mouseHandler";
 import SimpleController from "./entities/controllers/SimpleController";
 import * as cameraSubject from "./camera/cameraSubject";
-import RenderContainer from './hud/RenderContainer.jsx'
-import ToolBar from './hud/ToolBar.jsx';
-import ActionBar from './hud/ActionBar.jsx';
+import LayersContainer from "./LayersContainer.jsx";
 
 //injectTapEventPlugin();
 module.exports.run = function() {
@@ -28,15 +26,16 @@ module.exports.run = function() {
     reactContainer.style.height = "100%";
     document.body.appendChild(reactContainer);
 
-    const App = () => (
-        <div id="app" style={{ display:"flex", flexDirection:"column", justifyContent:"space-between", height:"100%"}}>
-            <RenderContainer/>
-            <ToolBar/>
-            <ActionBar/>
-        </div>
-    );
+    {/*const App = () => (*/}
+    //     <div id="app" style={{ display:"flex", flexDirection:"column", justifyContent:"space-between",
+    //             alignContent:"center", flexWrap:"wrap", height:"100%"}}>
+    //         <RenderContainer/>
+    //         <CursorLayer/>
+    //         <ControlsLayer/>
+    //     </div>
+    // );
 
-    ReactDOM.render(<App />, reactContainer);
+    ReactDOM.render(<LayersContainer />, reactContainer);
 
     let splash = document.getElementById('splash');
     splash.parentNode.removeChild(splash);

@@ -29,7 +29,7 @@ class ActionBar extends React.Component {
                 );
             case 'CreateEntityFAB':
                 return (
-                    <div style={{ float:"right", margin:"32px"}}>
+                    <div style={{ float:"right"}}>
                         <CreateEntityFAB onClick={ this.createClicked } />
                     </div>
                 );

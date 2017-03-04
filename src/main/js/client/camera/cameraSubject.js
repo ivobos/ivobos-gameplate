@@ -18,3 +18,8 @@ export function setSubject(object3d, offset) {
 export function setTarget(position, quaternion) {
     target.userData.controller.moveTo(position, quaternion);
 }
+
+export function setFocus(position, quaternion) {
+    let targetPosition = position.clone().sub(focusOffset.clone().applyQuaternion(quaternion));
+    setTarget(targetPosition, quaternion);
+}

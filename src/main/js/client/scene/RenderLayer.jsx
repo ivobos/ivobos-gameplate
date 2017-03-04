@@ -1,10 +1,10 @@
 import React from "react";
-import * as sceneRenderer from "../scene/sceneRenderer";
+import * as sceneRenderer from "./sceneRenderer";
 
-class RenderContainer extends React.Component {
+class RenderLayer extends React.Component {
     render() {
         return (
-            <div id="rendererContainer"
+            <div id="RenderLayer"
                  ref={node => { node.appendChild(sceneRenderer.getRendererElement()); }}
                  style={{ position:'absolute' }}
             >
@@ -13,4 +13,4 @@ class RenderContainer extends React.Component {
     }
 }
 
-export default RenderContainer;
+export default RenderLayer;

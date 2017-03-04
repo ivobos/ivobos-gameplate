@@ -30,6 +30,6 @@ function postRenderCb() {
     cursor.quaternion.copy(q);
     if (mouseHandler.clicked) {
         mouseHandler.clicked = false; // consume event
-        cameraSubject.setTarget(cursor.position, cursor.quaternion);
+        cameraSubject.setFocus(cursor.position, cursor.quaternion);
     }
 }
