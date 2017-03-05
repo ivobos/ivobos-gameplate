@@ -12,7 +12,7 @@ class HighlightToggle extends React.Component {
         return (
             <label className="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect"
                    htmlFor="highlightToggle"
-                   style={{ margin:"8px"}}>
+                   style={{ }}>
                 <input type="checkbox" id="highlightToggle" className="mdl-icon-toggle__input"
                        checked={this.state.highlight} onChange={ () => this.toggleState() }/>
                 <i className="mdl-icon-toggle__label material-icons">highlight</i>

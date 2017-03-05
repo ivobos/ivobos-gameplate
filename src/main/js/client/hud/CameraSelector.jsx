@@ -6,7 +6,7 @@ class CameraSelector extends React.Component {
         return (
             <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
                     onClick={cameraManager.selectNextCameraMode}
-                    style={{ margin:"8px"}}>
+                    style={{ }}>
                 <i className="material-icons">visibility</i>
             </button>
         );
