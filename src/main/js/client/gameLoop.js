@@ -6,6 +6,8 @@ import * as simpleDrag from "./physics/simpleDrag";
 import * as cohesion from "./physics/cohesion";
 import * as sceneInstance from "./scene/sceneInstance";
 import * as object3dUtils from "./scene/object3dUtils";
+import * as serverConnection from "./network/serverConnection";
+
 
 const updatesPerSec = 60;
 const stepSec = 1 / updatesPerSec;
@@ -50,6 +52,8 @@ function frame() {
         sceneRenderer.setRenderRequired();
     }
     lastMsec = nowMsec;
+    // replicate objects to server
+    serverConnection.replicateObjects();
     //this.callMethod("doAnimation");
     //this.callMethodsWithData("getCameraData", "doCameraUpdate");
     //cameraInstance.doCameraUpdate();

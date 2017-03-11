@@ -14,7 +14,7 @@ class ServerStatus extends React.Component {
                    style={{ }}>
                 <input type="checkbox" id="serverStatus" className="mdl-icon-toggle__input"
                        checked={this.state.enabled} onChange={ () => this.toggleEnabled() }/>
-                <i className="mdl-icon-toggle__label material-icons">
+                <i className="mdl-icon-toggle__label material-icons" style={this.getCloudStyle()}>
                     { this.getCloudIcon() }
                 </i>
             </label>
@@ -22,8 +22,16 @@ class ServerStatus extends React.Component {
     }
     getCloudIcon() {
         if (!this.state.enabled) return "cloud_off";
+        if (this.state.connected && !this.state.loggedin) return "cloud_off";
         if (this.state.connected) return "cloud";
         return "cloud_queue";
+    }
+    getCloudStyle() {
+        if (this.state.connected && !this.state.loggedin) {
+            return  { color:"red"};
+        } else {
+            return {};
+        }
     }
     toggleEnabled() {
         let newValue = !this.state.enabled;
@@ -36,7 +44,8 @@ class ServerStatus extends React.Component {
     createStateObject() {
         return {
             enabled: serverConnection.isEnabled(),
-            connected: serverConnection.isConnected()
+            connected: serverConnection.isConnected(),
+            loggedin: serverConnection.isLoggedIn()
         }
     }
 }

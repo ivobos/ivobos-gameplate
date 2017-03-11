@@ -15,6 +15,7 @@
   "author": "Ivo Bosticky",
   "license": "ISC",
   "devDependencies": {
+    "moniker": "^0.1.2",
     "webpack": "^2.2.1",
     "webpack-node-externals": "^1.5.4",
     "ws": "^2.2.0"

@@ -1,11 +1,12 @@
-import * as clientConnections from "./clientConnections";
+import * as socketServer from "./socketServer";
 
 console.log("starting server");
 
 setImmediate(tick);
-clientConnections.listen();
+socketServer.listen();
 
 function tick() {
     // console.log("tick");
-    setTimeout(tick, 1000);
+    socketServer.updateClients();
+    setTimeout(tick, 100);
 }

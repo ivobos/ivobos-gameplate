@@ -125,7 +125,11 @@ export function parseAndExecute(script) {
     var tree = parser.program();
     var visitor = new ProgramVisitor();
     visitor.visit(tree);
-    if (visitor.objects3d.length == 1) return visitor.objects3d[0];
+    if (visitor.objects3d.length == 1) {
+        let object3d = visitor.objects3d[0];
+        object3d.userData.recipe = script;
+        return object3d;
+    }
     if (visitor.objects3d.length == 0) return undefined;
     return visitor.objects3d;
 }

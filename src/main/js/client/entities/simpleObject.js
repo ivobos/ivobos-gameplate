@@ -61,10 +61,11 @@ export function addGridHelper() {
     sceneInstance.getScene().add( gridHelper );
 }
 
-export function addRecipe(recipe, position) {
+export function addRecipe(uuid, recipe, position) {
     var object3d = threeDsl.parseAndExecute(recipe);
     sceneInstance.getScene().add(object3d);
     if (position) object3d.position.add(position);
+    if (uuid) object3d.uuid = uuid;
     return object3d;
 }
 
