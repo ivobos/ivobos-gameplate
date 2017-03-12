@@ -1,5 +1,6 @@
 import * as Moniker from 'moniker';
 import * as socketServer from './socketServer';
+import * as userRegistry from './userRegistry';
 
 const LOGIN_TYPE = "login";
 
@@ -16,6 +17,7 @@ class LoginHandler {
     }
 
     rxCallback(message) {
+        console.log("rx "+JSON.stringify(message));
         if (message.username) {
             if (socketServer.isUserConnected(message.username)) {
                 console.log("user already logged in");
@@ -29,8 +31,13 @@ class LoginHandler {
         } else {
             this.username = message.username;
         }
-        console.log("User "+this.username+" connected");
-        this.transportHandler.send(LOGIN_TYPE, { success: true, username: this.username });
+        userRegistry.setUserUuid(this.username, message.uuid);
+        console.log("User "+this.username+" connected, uuid:"+message.uuid);
+        this.transportHandler.send(LOGIN_TYPE, {
+            success: true,
+            username: this.username,
+            uuid: userRegistry.getUuid()
+        });
         this.onLoginSuccessHandler();
     }
 }

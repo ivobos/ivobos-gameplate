@@ -29,6 +29,17 @@ $ cd server
 $ npm install
 $ npm run build
 ```
+# Local dev loop
+Run the server in local dev from server directory
+$ cd server
+$ npm start
+Run the client from top level project directory
+$ npm start
+Open client in a browser with http://localhost:8080/
+Add a local value with key "servername" and Value "localhost", this can be done in Chrome by opening
+dev tools, going to Application tab, Storage section for http://localhost:8080 and editing
+servername key/value to use localhost.
+
 # Running the server using pm2
 * Install pm2
 ```

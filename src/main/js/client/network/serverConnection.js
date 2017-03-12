@@ -65,10 +65,14 @@ function checkConnection() {
         ws = undefined;
     }
     if (!ws && enabled) {
-        console.log("connecting to server");
-        // let hostname = "node.aptive.net";
-        let hostname = "localhost";
-        ws = new WebSocket('ws://'+hostname+':8088/');
+        let servername = "node.aptive.net";
+        if (localStorage.servername) {
+            servername = localStorage.servername;
+        } else {
+            localStorage.servername = servername;
+        }
+        console.log("connecting to "+servername);
+        ws = new WebSocket('ws://'+servername+':8088/');
         ws.onopen = onopen;
     }
     notifyStateChange();
@@ -79,7 +83,7 @@ function onopen(event) {
     console.log("rx connected");
     transportHandler = new TransportHandler(ws, defaultRxHandler);
     wsStateHandler = new WsStateHandler(ws, disconnectionHandler);
-    loginHandler = new LoginHandler(transportHandler, onloginsuccess);
+    loginHandler = new LoginHandler(transportHandler, onloginsuccess, );
 }
 
 function onloginsuccess() {

@@ -20,7 +20,6 @@ import * as userAccount from './userAccount';
 
 //injectTapEventPlugin();
 module.exports.run = function() {
-    userAccount.init();
     browserState.init();
     keyboardHandler.init();
     mouseHandler.init();
@@ -54,6 +53,7 @@ module.exports.run = function() {
     simpleObject.addGridHelper();
     let player = simpleObject.addRecipe(undefined, `Mesh Sphere radius=1 Lambert Color#888 translate -6,1,0`);
     player.userData.controller = new SimpleController(player);
+    userAccount.init(player);
     cameraSubject.setSubject(player, new THREE.Vector3(0, 0, 5));
     pacman.addPacman(new THREE.Vector3(0, 1, 0));
     gameLoop.start();

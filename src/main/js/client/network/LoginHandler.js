@@ -9,12 +9,11 @@ class LoginHandler {
         this.error = undefined;
         this.transportHandler.setRxCallback(LOGIN_TYPE, this.rxCallback.bind(this));
         this.onLoginSuccessHandler = onLoginSuccessHandler;
-        let msg = {
+        this.transportHandler.send(LOGIN_TYPE, {
             username: userAccount.getUsername(),
+            uuid: userAccount.getUuid(),
             appVersion: navigator.appVersion
-        };
-
-        this.transportHandler.send(LOGIN_TYPE, msg);
+        });
     }
 
     isLoggedIn() {
@@ -33,6 +32,7 @@ class LoginHandler {
             console.log("Setting username to "+message.username);
             userAccount.setUsername(message.username);
         }
+        userAccount.setUuid(message.uuid);
         this.loggedIn = true;
         this.error = undefined;
         this.onLoginSuccessHandler();
