@@ -25,3 +25,7 @@ export function getUuid() {
 export function setUuid(uuid) {
     return playerObj.uuid = uuid;
 }
+
+export function getPlayerObject() {
+    return playerObj;
+}

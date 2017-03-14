@@ -42,19 +42,22 @@ class ObjectReplicator {
     }
 
     // tell replicator to replicate an object of the following structure
-    // { uuid: ..., data: ... }
+    // { uuid: ..., data: ..., datahash: datahash }
+    // keep a record of the replication effort in a map keyed by uuid with following data
+    // { datahash: ..., acked: ...}
     pushObject(object) {
-        let datahash = hashUtils.hash(JSON.stringify(object.data));
-        let queuedOrSentDatahash = this.txObjectDatahashMap.get(object.uuid);
-        if (queuedOrSentDatahash === datahash) {
-            // sent this previously
+        if (!object.uuid) {
+            console.log("dont give me shit objects without uuid");
             return;
         }
-
-        // TODO: if the object was sent just a moment ago and
-        // not acknowledged by server, we should not send again
-        // if (notacked) return;
-
+        let txrecord = this.txObjectDatahashMap.get(object.uuid);
+        if (txrecord && !txrecord.acked) {
+            return; // previous replication wasn't acked yet, wait
+        }
+        let datahash = hashUtils.hash(JSON.stringify(object.data));
+        if (txrecord && txrecord.datahash === datahash) {
+            return; // object didn't change, no need to resend
+        }
         // send the object
         let repmsg = {
             uuid: object.uuid,
@@ -62,21 +65,35 @@ class ObjectReplicator {
             datahash: datahash
         };
         console.log("tx "+JSON.stringify(repmsg));
-        this.txObjectDatahashMap.set(object.uuid, datahash);
         this.transportHandler.send(REP_TYPE, repmsg);
+        this.txObjectDatahashMap.set(object.uuid, { datahash: datahash, acked: false });
     }
 
-    // get next change from replicator to send to another replicator
-    // commented out because not needed because we're writing to ws in the pushObject method
-    // export function popMessage() {
-    //
-    // }
-    // receive change from another replicator to push into this one
-    // repmsg = { uuid: <uuid>, data: <data>, datahash: <datahash> }
+    pretendSynced(object) {
+        let datahash = hashUtils.hash(JSON.stringify(object.data));
+        this.txObjectDatahashMap.set(object.uuid, { datahash: datahash, acked: true });
+    }
+
+    // receive change from the other end, this can be either an update or an ack
+    // { uuid: ..., data: ..., datahash:... }
+    // { uuid: ..., ack: true, datahash:... }
     rxCallback(repmsg) {
-        if (this.txObjectDatahashMap.get(repmsg.uuid) !== repmsg.datahash) {
+        console.log("rx "+JSON.stringify(repmsg));
+        let txrecord = this.txObjectDatahashMap.get(repmsg.uuid);
+        if (repmsg.data && (!txrecord || txrecord.acked)) {
+            // new uuid or already acked msg, ack it and pass it through to the app
+            this.transportHandler.send(REP_TYPE, { uuid: repmsg.uuid, ack: true, datahash: repmsg.datahash });
+            this.txObjectDatahashMap.set(repmsg.uuid, { datahash: repmsg.datahash, acked: true });
             this.rxObjectHandler(repmsg.uuid, repmsg.data);
+            return;
         }
+        if (repmsg.ack && repmsg.datahash === txrecord.datahash && !txrecord.acked) {
+            // received an ack, remember this uuid has been acked
+            txrecord.acked = true;
+            return;
+        }
+        // ok, got here means the protocol is not working
+        console.log("fuckup in protocol, repmsg="+JSON.stringify(repmsg)+" txrecord="+JSON.stringify(txrecord));
     }
 
 }

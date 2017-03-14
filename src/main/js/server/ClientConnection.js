@@ -21,6 +21,7 @@ class ClientConnection {
     }
 
     onLoginSuccessHandler() {
+        console.log("create new object replicator");
         this.objectReplicator = new ObjectReplicator(this.transportHandler, this.rxObjectHandler.bind(this));
     }
 

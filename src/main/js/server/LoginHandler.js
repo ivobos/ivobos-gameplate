@@ -32,11 +32,10 @@ class LoginHandler {
             this.username = message.username;
         }
         userRegistry.setUserUuid(this.username, message.uuid);
-        console.log("User "+this.username+" connected, uuid:"+message.uuid);
         this.transportHandler.send(LOGIN_TYPE, {
             success: true,
             username: this.username,
-            uuid: userRegistry.getUuid()
+            uuid: userRegistry.getUuid(this.username)
         });
         this.onLoginSuccessHandler();
     }

@@ -32,7 +32,9 @@ class LoginHandler {
             console.log("Setting username to "+message.username);
             userAccount.setUsername(message.username);
         }
-        userAccount.setUuid(message.uuid);
+        if (message.uuid) {
+            userAccount.setUuid(message.uuid);
+        }
         this.loggedIn = true;
         this.error = undefined;
         this.onLoginSuccessHandler();

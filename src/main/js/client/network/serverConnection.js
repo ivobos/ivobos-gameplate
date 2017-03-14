@@ -6,6 +6,7 @@ import * as sceneInstance from "../scene/sceneInstance";
 import LoginHandler from './LoginHandler';
 import WsStateHandler from '../../common/WsStateHandler';
 import * as simpleObject from "../entities/simpleObject";
+import * as userAccount from "../userAccount";
 
 let ws = undefined;
 let enabled = true;
@@ -42,15 +43,7 @@ export function replicateObjects() {
     if (objectReplicator !== undefined) {
         for (let object3d of sceneInstance.getScene().children) {
             if (object3d.userData.recipe != undefined) {
-                objectReplicator.pushObject(
-                    {
-                        uuid: object3d.uuid,
-                        data: {
-                            position: object3d.position,
-                            recipe: object3d.userData.recipe
-                        }
-                    }
-                );
+                objectReplicator.pushObject(getSyncDataFromObject3d(object3d));
             }
         }
     }
@@ -88,6 +81,9 @@ function onopen(event) {
 
 function onloginsuccess() {
     objectReplicator = new ObjectReplicator(transportHandler, rxObjectHandler);
+    // don't replicate player, hope for server to update us first
+    // or if server doesn't have us, we'll be replicated when we move
+    objectReplicator.pretendSynced(getSyncDataFromObject3d(userAccount.getPlayerObject()));
 }
 
 function defaultRxHandler(data) {
@@ -99,6 +95,7 @@ function rxObjectHandler(uuid, data) {
     for (let object3d of sceneInstance.getScene().children) {
         if (object3d.uuid === uuid) {
             object3d.position.set(data.position.x, data.position.y, data.position.z);
+            object3d.quaternion.set(data.quaternion._x, data.quaternion._y, data.quaternion._z, data.quaternion._w);
             // console.log("current pos="+JSON.stringify(object3d.position)+" should update to "+
             //     JSON.stringify(data.position));
             return;
@@ -118,4 +115,15 @@ function disconnectionHandler(event) {
 
 function notifyStateChange() {
     if (changeListener) changeListener();
+}
+
+function getSyncDataFromObject3d(object3d) {
+    return {
+        uuid: object3d.uuid,
+        data: {
+            position: object3d.position,
+            quaternion: object3d.quaternion,
+            recipe: object3d.userData.recipe
+        }
+    }
 }
