@@ -17,7 +17,6 @@ class LoginHandler {
     }
 
     rxCallback(message) {
-        console.log("rx "+JSON.stringify(message));
         if (message.username) {
             if (socketServer.isUserConnected(message.username)) {
                 console.log("user already logged in");
