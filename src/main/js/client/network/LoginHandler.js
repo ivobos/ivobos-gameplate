@@ -21,7 +21,6 @@ class LoginHandler {
     }
 
     rxCallback(message) {
-        console.log("LoginHandler rx "+JSON.stringify(message));
         if (!message.success) {
             console.log("failed to login: "+message.message);
             this.loggedIn = false;

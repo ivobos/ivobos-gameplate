@@ -91,7 +91,6 @@ function defaultRxHandler(data) {
 }
 
 function rxObjectHandler(uuid, data) {
-    console.log("rx rep for uuid:"+uuid+" data:"+data);
     for (let object3d of sceneInstance.getScene().children) {
         if (object3d.uuid === uuid) {
             object3d.position.set(data.position.x, data.position.y, data.position.z);
@@ -101,8 +100,9 @@ function rxObjectHandler(uuid, data) {
             return;
         }
     }
-    let position = new THREE.Vector3(data.position.x, data.position.y, data.position.z);
-    simpleObject.addRecipe(uuid, data.recipe, position);
+    let object3d = simpleObject.addRecipe(uuid, data.recipe);
+    object3d.position.set(data.position.x, data.position.y, data.position.z);
+    object3d.quaternion.set(data.quaternion._x, data.quaternion._y, data.quaternion._z, data.quaternion._w);
 }
 
 function disconnectionHandler(event) {

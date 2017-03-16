@@ -64,7 +64,6 @@ class ObjectReplicator {
             data: object.data,
             datahash: datahash
         };
-        console.log("tx "+JSON.stringify(repmsg));
         this.transportHandler.send(REP_TYPE, repmsg);
         this.txObjectDatahashMap.set(object.uuid, { datahash: datahash, acked: false });
     }
@@ -78,7 +77,12 @@ class ObjectReplicator {
     // { uuid: ..., data: ..., datahash:... }
     // { uuid: ..., ack: true, datahash:... }
     rxCallback(repmsg) {
-        console.log("rx "+JSON.stringify(repmsg));
+        if (repmsg.data) {
+            let datahash = hashUtils.hash(JSON.stringify(repmsg.data));
+            if (datahash !== repmsg.datahash) {
+                console.log("dammit datash error, expected "+datahash+" but was "+repmsg.datahash);
+            }
+        }
         let txrecord = this.txObjectDatahashMap.get(repmsg.uuid);
         if (repmsg.data && (!txrecord || txrecord.acked)) {
             // new uuid or already acked msg, ack it and pass it through to the app

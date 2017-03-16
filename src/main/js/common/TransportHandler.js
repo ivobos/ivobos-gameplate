@@ -22,10 +22,13 @@ class TransportHandler {
           type: type,
           data: data
         };
-        this.ws.send(JSON.stringify(msg));
+        let msgstr = JSON.stringify(msg);
+        console.log("tx "+msgstr);
+        this.ws.send(msgstr);
     }
 
     onmessage(event) {
+        console.log("rx "+event.data);
         let msg = JSON.parse(event.data);
         let callback = this.rxCallbackByType.get(msg.type);
         if (callback === undefined) callback = this.defaultRxCallback;
