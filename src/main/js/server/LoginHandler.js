@@ -17,10 +17,22 @@ class LoginHandler {
     }
 
     rxCallback(message) {
+        if (VERSION !== message.version) {
+            this.transportHandler.send(LOGIN_TYPE, {
+                    success: false,
+                    action: "Update",
+                    message: "Update to version "+VERSION
+                });
+            return;
+        }
         if (message.username) {
             if (socketServer.isUserConnected(message.username)) {
                 console.log("user already logged in");
-                this.transportHandler.send(LOGIN_TYPE, { success: false, message: "User already logged in" });
+                this.transportHandler.send(LOGIN_TYPE, {
+                    success: false,
+                    action: "Disable",
+                    message: "User already logged in on another device."
+                });
                 return;
             }
         }

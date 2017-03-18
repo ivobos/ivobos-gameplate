@@ -26,6 +26,10 @@ Install Android platform
 cd ivobos-gameplate
 cordova platform add android --save
 ```
+Add required plugins
+```
+cordova plugin add https://github.com/xmartlabs/cordova-plugin-market
+```
 Build for Android
 ```
 npm run build

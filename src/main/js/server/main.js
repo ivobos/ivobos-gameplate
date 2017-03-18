@@ -1,6 +1,6 @@
 import * as socketServer from "./socketServer";
 
-console.log("starting server");
+console.log("Starting server version: "+ VERSION);
 
 const tickDurationMsec = 1000 / 60;
 let nextTick = timestamp();

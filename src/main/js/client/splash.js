@@ -3,6 +3,8 @@ import "../../css/splash.css";
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.js';
 
+console.log("Version: " + VERSION);
+
 var splash = document.createElement('div');
 splash.id = "splash";
 document.body.appendChild(splash);

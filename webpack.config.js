@@ -1,4 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+
 module.exports = {
     entry: {
         splash : './src/main/js/client/splash.js'
@@ -21,9 +23,14 @@ module.exports = {
             { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/img/[name].[ext]"}
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        title: 'Gameplate',
-        chunks: ['splash'],
-        template: './src/main/index.ejs'
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Gameplate',
+            chunks: ['splash'],
+            template: './src/main/index.ejs'
+        }),
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(require("./package.json").version)
+        })
+    ]
 };
