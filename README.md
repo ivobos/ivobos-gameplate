@@ -35,13 +35,11 @@ Connect your android device using a USB cable and run
 ```
 cordova run
 ```
-## Creating a game in Google Play Console
-Title: The Construct
-Short description: The construct is a persistent virtual place space
-Full description: 
-A construct is a virtual play space or "launching program" created to run simulation games or create virtual objects. 
-The construct is a persistent virtual place space.
-New objects can be crafted using Three DSL.
+### Bumping version before release
+```
+npm version patch
+
+```
 ### Building apk for release
 ```
 ./android_build_apk.sh
