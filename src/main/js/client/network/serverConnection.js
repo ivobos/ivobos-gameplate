@@ -75,7 +75,7 @@ function checkConnection() {
 function onopen(event) {
     console.log("rx connected");
     transportHandler = new TransportHandler(ws, defaultRxHandler);
-    wsStateHandler = new WsStateHandler(ws, disconnectionHandler);
+    wsStateHandler = new WsStateHandler(ws, transportHandler, disconnectionHandler);
     loginHandler = new LoginHandler(transportHandler, onloginsuccess, );
 }
 

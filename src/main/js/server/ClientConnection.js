@@ -8,7 +8,7 @@ class ClientConnection {
 
     constructor(ws, disconnectHandler) {
         this.transportHandler = new TransportHandler(ws, this.defaultRxHandler.bind(this));
-        this.wsStateHandler = new WsStateHandler(ws, disconnectHandler);
+        this.wsStateHandler = new WsStateHandler(ws, this.transportHandler, disconnectHandler);
         this.loginHandler = new LoginHandler(this.transportHandler, this.onLoginSuccessHandler.bind(this));
     }
 

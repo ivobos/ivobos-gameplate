@@ -1,14 +1,13 @@
 import * as Moniker from 'moniker';
 import * as socketServer from './socketServer';
 import * as userRegistry from './userRegistry';
-
-const LOGIN_TYPE = "login";
+import * as messageTypes from "../common/messageTypes";
 
 class LoginHandler {
     constructor(transportHandler, onLoginSuccessHandler) {
         this.transportHandler = transportHandler;
         this.username = undefined;
-        this.transportHandler.setRxCallback(LOGIN_TYPE, this.rxCallback.bind(this));
+        this.transportHandler.setRxCallback(messageTypes.LOGIN_TYPE, this.rxCallback.bind(this));
         this.onLoginSuccessHandler = onLoginSuccessHandler;
     }
 
@@ -18,7 +17,7 @@ class LoginHandler {
 
     rxCallback(message) {
         if (VERSION !== message.version) {
-            this.transportHandler.send(LOGIN_TYPE, {
+            this.transportHandler.send(messageTypes.LOGIN_TYPE, {
                     success: false,
                     action: "Update",
                     message: "Update to version "+VERSION
@@ -28,9 +27,9 @@ class LoginHandler {
         if (message.username) {
             if (socketServer.isUserConnected(message.username)) {
                 console.log("user already logged in");
-                this.transportHandler.send(LOGIN_TYPE, {
+                this.transportHandler.send(messageTypes.LOGIN_TYPE, {
                     success: false,
-                    action: "Disable",
+                    action: "Retry",
                     message: "User already logged in on another device."
                 });
                 return;
@@ -43,7 +42,7 @@ class LoginHandler {
             this.username = message.username;
         }
         userRegistry.setUserUuid(this.username, message.uuid);
-        this.transportHandler.send(LOGIN_TYPE, {
+        this.transportHandler.send(messageTypes.LOGIN_TYPE, {
             success: true,
             username: this.username,
             uuid: userRegistry.getUuid(this.username)

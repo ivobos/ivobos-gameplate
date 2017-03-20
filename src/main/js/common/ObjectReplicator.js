@@ -1,6 +1,5 @@
 import * as hashUtils from "./hashUtils";
-
-const REP_TYPE = "rep";
+import * as messageTypes from "./messageTypes";
 
 // the replication is asymetric
 // any changes to objects in the client are replicated to server
@@ -37,7 +36,7 @@ class ObjectReplicator {
     constructor(transportHandler, rxObjectHandler) {
         this.txObjectDatahashMap = new Map();
         this.transportHandler = transportHandler;
-        this.transportHandler.setRxCallback(REP_TYPE, this.rxCallback.bind(this));
+        this.transportHandler.setRxCallback(messageTypes.REP_TYPE, this.rxCallback.bind(this));
         this.rxObjectHandler = rxObjectHandler;
     }
 
@@ -64,7 +63,7 @@ class ObjectReplicator {
             data: object.data,
             datahash: datahash
         };
-        this.transportHandler.send(REP_TYPE, repmsg);
+        this.transportHandler.send(messageTypes.REP_TYPE, repmsg);
         this.txObjectDatahashMap.set(object.uuid, { datahash: datahash, acked: false });
     }
 
@@ -86,7 +85,7 @@ class ObjectReplicator {
         let txrecord = this.txObjectDatahashMap.get(repmsg.uuid);
         if (repmsg.data && (!txrecord || txrecord.acked)) {
             // new uuid or already acked msg, ack it and pass it through to the app
-            this.transportHandler.send(REP_TYPE, { uuid: repmsg.uuid, ack: true, datahash: repmsg.datahash });
+            this.transportHandler.send(messageTypes.REP_TYPE, { uuid: repmsg.uuid, ack: true, datahash: repmsg.datahash });
             this.txObjectDatahashMap.set(repmsg.uuid, { datahash: repmsg.datahash, acked: true });
             this.rxObjectHandler(repmsg.uuid, repmsg.data);
             return;

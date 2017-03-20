@@ -1,15 +1,14 @@
 import * as userAccount from '../userAccount';
 import * as serverConnection from './serverConnection';
-
-const LOGIN_TYPE = "login";
+import * as messageTypes from "../../common/messageTypes";
 
 class LoginHandler {
     constructor(transportHandler, onLoginSuccessHandler) {
         this.transportHandler = transportHandler;
         this.loggedIn = false;
-        this.transportHandler.setRxCallback(LOGIN_TYPE, this.rxCallback.bind(this));
+        this.transportHandler.setRxCallback(messageTypes.LOGIN_TYPE, this.rxCallback.bind(this));
         this.onLoginSuccessHandler = onLoginSuccessHandler;
-        this.transportHandler.send(LOGIN_TYPE, {
+        this.transportHandler.send(messageTypes.LOGIN_TYPE, {
             username: userAccount.getUsername(),
             uuid: userAccount.getUuid(),
             appVersion: navigator.appVersion,
@@ -36,19 +35,24 @@ class LoginHandler {
                         }
                     },
                     actionText: 'Update',
-                    timeout: 30000
+                    timeout: 10000
                 });
-            } else if (message.action === "Disable") {
+            } else if (message.action === "Retry") {
                 document.querySelector('.mdl-js-snackbar').MaterialSnackbar.showSnackbar({
                     message: message.message,
-                    timeout: 30000
+                    actionHandler: function (event) {
+                        serverConnection.setEnabled(true);
+                    },
+                    actionText: 'Retry',
+                    timeout: 10000
                 });
                 serverConnection.setEnabled(false);
             } else {
                 document.querySelector('.mdl-js-snackbar').MaterialSnackbar.showSnackbar({
                     message: message.message,
-                    timeout: 30000
+                    timeout: 10000
                 });
+                serverConnection.setEnabled(false);
             }
             return;
         }
