@@ -1,6 +1,6 @@
 {
   "name": "ivobos-gameplate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gameplate for threejs based mobile games",
   "main": "index.js",
   "scripts": {
