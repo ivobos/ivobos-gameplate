@@ -2,6 +2,7 @@ import React from "react";
 import CameraSelector from "./CameraSelector.jsx";
 import HighlightToggle from "./HighlightToggle.jsx";
 import ServerStatus from "./ServerStatus.jsx";
+import LocationControl from "./LocationControl.jsx";
 
 class ToolBar extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class ToolBar extends React.Component {
                 </div>
                 <div style={{ display:"flex", flexDirection:"row-reverse"}}>
                     <ServerStatus/>
+                    <LocationControl/>
                 </div>
             </div>
         );

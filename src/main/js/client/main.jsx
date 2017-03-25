@@ -59,6 +59,3 @@ module.exports.run = function() {
     gameLoop.start();
     serverConnection.init();
 };
-
-
-

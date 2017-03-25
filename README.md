@@ -42,10 +42,12 @@ cordova run
 ### Bumping version before release
 ```
 npm version patch
+git push
 
 ```
 ### Building apk for release
 ```
+npm run build
 ./android_build_apk.sh
 ```
 will create android-release.apk
