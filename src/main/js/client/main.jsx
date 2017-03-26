@@ -17,6 +17,7 @@ import * as cameraSubject from "./camera/cameraSubject";
 import LayersContainer from "./LayersContainer.jsx";
 import * as serverConnection from "./network/serverConnection";
 import * as userAccount from './userAccount';
+import * as geolocation from './player/geolocation';
 
 //injectTapEventPlugin();
 module.exports.run = function() {
@@ -56,6 +57,7 @@ module.exports.run = function() {
     userAccount.init(player);
     cameraSubject.setSubject(player, new THREE.Vector3(0, 0, 5));
     pacman.addPacman(new THREE.Vector3(0, 1, 0));
+    geolocation.setSubject(player);
     gameLoop.start();
     serverConnection.init();
 };
